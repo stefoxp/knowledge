@@ -13,12 +13,13 @@ Letti
 - `Guida Galattica per Agilisti <https://www.guidagalatticaperagilisti.com/>`_ - Stefano Leli, Pierluigi Pugliese, Giovanni Puliti, Giulio Roggero
 - Continuous Delivery - Jez Humble, David Farley 
 - Growing Object Oriented Software Guided By Tests - S.Freeman, N.Pryce
+- Intelligenza emotiva - Daniel Goleman
 
 Da leggere
 ==========
 
-- Intelligenza emotiva - Daniel Goleman
 - Coaching Agile Teams: A Companion for Scrummasters, Agile Coaches, and Project Managers in Transition - Lyssa Adkins
 - Kanban - David J. Anderson
+- Kanban in action - Marcus Hammarberg, Joakim Sundén
 - Refactoring: Improving the Design of Existing Code - Martin Fowler
 - Working Effectively with Legacy Code - Michael C. Feathers
