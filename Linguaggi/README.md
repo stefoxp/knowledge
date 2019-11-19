@@ -1,0 +1,3 @@
+# Linguaggi
+
+- [Python](python.md);

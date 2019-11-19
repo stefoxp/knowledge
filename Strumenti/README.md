@@ -1,4 +1,4 @@
 # Strumenti
 
-- [Vim](Vim.rst);
+- [Vim](vim.md);
 - [Docker](Docker);

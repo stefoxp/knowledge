@@ -1,6 +1,6 @@
 # The Game di Alessandro Baricco
 
->Libro [Amazon](https://www.amazon.it/Game-Alessandro-Baricco/dp/8806235559)
+>[Libro](https://www.goodreads.com/book/show/42098125-the-game)
 
 Un nuovo tipo di intelligenza ha generato i computer. Una mutazione mentale si è procurata gli strumenti adatti al suo modo di stare al mondo e lo ha fatto velocemente: rivoluzione digitale.
 
