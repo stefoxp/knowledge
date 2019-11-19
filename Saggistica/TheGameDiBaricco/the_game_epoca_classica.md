@@ -66,7 +66,7 @@ Fuori gioco la casta dei mediatori -> annientamento delle élite
 
 Mondo a trazione diretta, mediazioni ridotte al minimo.
 L'individuo segue le tracce di altri milioni di individui.
-L'uomo sperimenta una nuova vita senza intermediazioni e ne trae una **rinvigorita concezione di sè**
+L'uomo sperimenta una nuova vita senza intermediazioni e ne trae una **rinvigorita concezione di sé**
 
 ### Smaterializzazione
 
@@ -75,7 +75,7 @@ I computer smaterializzavano il mondo riportandolo tutto in uno schermo gestibil
 
 ### Umanità aumentata
 
-Il web smaterializzava gli umani che arrivavano a percepire sè stessi come **iperuomini**: uomini che **non** erano costretti ad essere **lineari**
+Il web smaterializzava gli umani che arrivavano a percepire sé stessi come **iperuomini**: uomini che **non** erano costretti ad essere **lineari**
 
 ### Oltremondo
 
@@ -174,7 +174,7 @@ Espandere il gioco tracciato nell'epoca precedente:
 - smartphone
 
 I social certificavano la colonizzazione fisica dell'oltremondo.
-Le persone spostarono là dentro sè stessi, il proprio profilo, la propria personalità. E la parte più grande delle loro relazioni sociali.
+Le persone spostarono là dentro sé stessi, il proprio profilo, la propria personalità. E la parte più grande delle loro relazioni sociali.
 
 Lo smartphone ha accelerato questo processo.
 
@@ -187,7 +187,7 @@ L'iPhone era divertente come un gioco. Era nato per risolvere molti problemi ma 
 
 Ma era proprio concettualmente costruito come un videogioco.
 
-Il **videogioco** è stato una sorta di culla per molti dei protagonisti dell'isurrezione digitale.
+Il **videogioco** è stato una sorta di culla per molti dei protagonisti dell'insurrezione digitale.
 
 Es.
 
@@ -239,7 +239,7 @@ La post-esperienza è:
 - squarcio
 - esplorazione
 - perdita di controllo
-- disoersione
+- dispersione
 
 L'esperienza era un gesto, la **post-esperienza è un movimento**.
 
@@ -250,7 +250,7 @@ Il Game è un habitat molto difficile e non è adatto a un sacco di gente. La gr
 Eventi visibili negli anni della colonizzazione:
 
 1. alcune dot.com iniziarono a fare soldi
-2. tendenza a dimenticare la presenza di un nemico, inclinazione ad adottare il futuro, quel futuro come ragione in sè
+2. tendenza a dimenticare la presenza di un nemico, inclinazione ad adottare il futuro, quel futuro come ragione in sé
 
 Intorno ai grandi player si andava formando una sorta di **nuova élite**: la comunità di coloro che erano capaci di post-esperienza, sapendo utilizzare i vantaggi di un sistema..., che transitavano senza fatica tra mondo ed oltremondo (pre youtuber, influencer, ...)
 
@@ -283,10 +283,12 @@ a. recuperare il videogioco fino ad ottenere strumenti che erano divertenti e fu
 - minima resistenza fisica
 - gradevolezza sensoriale
 
->Stefano: Possibili applicazioni: didattica e apprendimento, ecommerce (comprare come in un gioco)
+>Stefano: Possibili applicazioni: didattica e apprendimento, e-commerce (comprare come in un gioco)
 
 b. smantellare il paradigma mentale del '900 e mettersi a pensare alla rovescia.
 Rifiutare la profondità come luogo dell'autentico e **collocare in superficie il cuore del mondo**.
 c. credere nell'efficacia della postura uomo-tastiera-schermo, perfezionarla per annullare la distanza tra i tre elementi, creare la **postura zero**.
 
-La resistenza all'insurrezione digitale è fallita perchè la denuncia di una perdita di anima del mondo si rivelò in definitiva inefficace.
+La resistenza all'insurrezione digitale è fallita perché la denuncia di una perdita di anima del mondo si rivelò in definitiva inefficace.
+
+Torna all'[indice](README.md)

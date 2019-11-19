@@ -51,12 +51,12 @@ Lo smartphone ha accelerato questo processo.
 
 ### The Game
 
-Steve Jobs, alla presentazione dell'iPhone, comunicava divertimento.
+Steve Jobs, alla presentazione del iPhone, comunicava divertimento.
 L'iPhone era divertente come un gioco. Era nato per risolvere molti problemi ma lo faceva come un gioco -> **gamification**.
 
 Ma era proprio concettualmente costruito come un videogioco.
 
-Il **videogioco** è stato una sorta di culla per molti dei protagonisti dell'isurrezione digitale.
+Il **videogioco** è stato una sorta di culla per molti dei protagonisti dell'insurrezione digitale.
 
 Es.
 
@@ -108,7 +108,7 @@ La post-esperienza è:
 - squarcio
 - esplorazione
 - perdita di controllo
-- disoersione
+- dispersione
 
 L'esperienza era un gesto, la **post-esperienza è un movimento**.
 
@@ -152,10 +152,12 @@ a. recuperare il videogioco fino ad ottenere strumenti che erano divertenti e fu
 - minima resistenza fisica
 - gradevolezza sensoriale
 
->Stefano: Possibili applicazioni: didattica e apprendimento, ecommerce (comprare come in un gioco)
+>Stefano: Possibili applicazioni: didattica e apprendimento, e-commerce (comprare come in un gioco)
 
 b. smantellare il paradigma mentale del '900 e mettersi a pensare alla rovescia.
 Rifiutare la profondità come luogo dell'autentico e **collocare in superficie il cuore del mondo**.
 c. credere nell'efficacia della postura uomo-tastiera-schermo, perfezionarla per annullare la distanza tra i tre elementi, creare la **postura zero**.
 
-La resistenza all'insurrezione digitale è fallita perchè la denuncia di una perdita di anima del mondo si rivelò in definitiva inefficace.
+La resistenza all'insurrezione digitale è fallita perché la denuncia di una perdita di anima del mondo si rivelò in definitiva inefficace.
+
+Torna all'[indice](README.md)

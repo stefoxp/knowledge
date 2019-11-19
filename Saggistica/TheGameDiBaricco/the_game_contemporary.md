@@ -40,3 +40,5 @@ Le soluzioni a questi problemi le può trovare solo un'intelligenza che ha la lo
 Se i nativi digitali che si prenderanno cura del Game continueranno ad essere maschi, biondi, americani e ingegneri, il mondo finirà in un loop senza prospettive
 24. il Game ha bisogno di **umanesimo**
 25. è l'umanesimo che deve colmare un ritardo e raggiungere il Game
+
+Torna all'[indice](README.md)

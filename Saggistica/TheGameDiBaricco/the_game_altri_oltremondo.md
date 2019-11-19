@@ -52,3 +52,5 @@ Due elementi certi:
 Il Game ha delle buone ragioni per adottarli. La principale è che assicurano agli abitanti del Game la **trasmissione della memoria**.
 2. fra le élite che ne avevano il controllo, si sono salvati gli **autori**.
 Il patrimonio di sapere e intelligenza che per secoli aveva scortato l'arte giace immobile ai margini del sistema, non tradotto nella lingua del presente, incompatibile con le più elementari abitudini della gente.
+
+Torna all'[indice](README.md)

@@ -23,3 +23,5 @@ Lo StoryTelling fa parte della realtà. Togliete i fatti dalla realtà e quel ch
 Storytelling è il nome che diamo a qualsiasi design capace di dare a un fatto il profilo aerodinamico necessario per mettersi in movimento.
 
 Vale più una verità inesatta ma con un design adatto ad attraversare il Game che una verità esatta ma lenta nel muoversi e incapace di schiodarsi...
+
+Torna all'[indice](README.md)

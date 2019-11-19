@@ -18,7 +18,7 @@ Il mondo in cui viviamo
   - **WhatsApp** creata da due impiegati di Yahoo, inventori di seconda generazione. Venduta a Facebook nel 2014 per 19 miliardi di dollari.
   Un miliardo di utilizzatori.
   Non contiene pubblicità ed è gratuita.
-  Come guadagna? (ipotesi: vendono i dati degli utilizzatori? sarebbe illegale ed escluso dai termini e le condizioni dell'app). Non è chiaro come guadagna.
+  Come guadagna? (ipotesi: vendono i dati degli utilizzatori? sarebbe illegale ed escluso dai termini e le condizioni dell'App). Non è chiaro come guadagna.
   - **Uber**. Hai un'auto che non stai usando -> affittala -> **sharing economy**.
   Aggiunge l'idea di **proprietà condivisa** che porta a:
     - cohousing
@@ -56,18 +56,18 @@ Il Game ammette quasi esclusivamente giocatori singoli così è diventato il gra
 
 >Paradosso: l'individualismo è sempre una postura contro ... cammina in solitudine in controsenso. Ma quando milioni di persone si mettono a camminare in controsenso qual è il senso giusto della strada?
 
-### Nuove èlite
+### Nuove élite
 
-Il Game ha finito per produrre una sua èlite, nuova, completamente diversa, ma un'èlite.
+Il Game ha finito per produrre una sua élite, nuova, completamente diversa, ma un'élite.
 L'audizione di Zuckerberg al Senato degli Stati Uniti (aprile 2018) riassume la situazione: distanza abissale tra i due tipi di potere (novecentesco e Game).
-Le nuove èlite sono quelli capaci di post-esperienza.
+Le nuove élite sono quelli capaci di post-esperienza.
 
 ### Episodiche scorrerie politiche. L'interessante anomalia 5 stelle
 
 Se oggi non hai un'alternativa al partito novecentesco, se non hai la capacità di manovrare masse mobili, cangianti, mai ferme, o catalizzare correnti fluide ... non vincerai più.
 
-Anche altre istituzioni, prima fra tutte la **scuola** hanno il problema della fissità, delle strutture permaenti, della scansione novecentesca dei tempi, degli spazi e delle persone.
-Verrà il giorno di rinnovare un pò i locali, andranno al macero la classe, la materia, l'insegnante di una materia, l'anno scolastico e l'esame.
+Anche altre istituzioni, prima fra tutte la **scuola** hanno il problema della fissità, delle strutture permanenti, della scansione novecentesca dei tempi, degli spazi e delle persone.
+Verrà il giorno di rinnovare un po' i locali, andranno al macero la classe, la materia, l'insegnante di una materia, l'anno scolastico e l'esame.
 
 Il Game ha anche una pancia, e ogni tanto comanda lei ... se per anni coltivi l'individualismo di massa, per anni sei a un passo da generare un effetto indesiderato: l'**egoismo di massa**. Cioè l'incapacità, ripetuta per milioni di individui, di prevedere le prossime venti mosse del gioco invece che dedicarti ciecamente solo alla prossima: che è sempre quella che difende Te, proprio Te, solo Te.
 
@@ -127,3 +127,5 @@ Nell'età del suo trionfo il Game inizia a mostrare crepe, dissesti, crolli sott
 Tutti e tre attaccano il Game dall'interno, armati di tool digitali.
 Più decisiva sembra la sorda determinazione con cui milioni di umani ogni giorno cercano di costruire la loro piccola parte di Game.
 Covano il prossimo passaggio: l'**intelligenza artificiale** farà scivolare in pochi anni la seconda guerra di resistenza a sommossa obsoleta.
+
+Torna all'[indice](README.md)
