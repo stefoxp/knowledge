@@ -1,4 +1,4 @@
 # Strumenti
 
-- [Vim](vim.md);
 - [Docker](Docker);
+- [Vim](vim.md);
