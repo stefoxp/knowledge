@@ -11,7 +11,7 @@ Il mondo in cui viviamo
     - parola pop per programmi pop
     - hanno iniziato a nascere programmi che non erano fatti per il computer
   Le App ci fanno entrare nell'oltremondo. Il traffico verso l'oltremondo è diventato immenso e velocissimo -> è impossibile mantenere una linea di demarcazione tra mondo ed oltremondo -> quando non riesci più a distinguere la linea sei nel Game.
-  - **Airbnb**, casa che non abiti per un pò -> affittala
+  - **Airbnb**, casa che non abiti per un po' -> affittala
   - Barack Obama vince le presidenziali usando il mondo digitale.
   Sito web per creare un'immensa comunità di persone con il sogno di Obama presidente.
 - 2009
@@ -21,10 +21,10 @@ Il mondo in cui viviamo
   Come guadagna? (ipotesi: vendono i dati degli utilizzatori? sarebbe illegale ed escluso dai termini e le condizioni dell'App). Non è chiaro come guadagna.
   - **Uber**. Hai un'auto che non stai usando -> affittala -> **sharing economy**.
   Aggiunge l'idea di **proprietà condivisa** che porta a:
-    - cohousing
-    - carsharing
+    - co-housing
+    - car-sharing
     - crowdfunding
-  Rissa legale fra Uber e taxisti.
+  Rissa legale fra Uber e tassisti.
   - **Movimento 5 stelle** viene generato dall'insurrezione digitale.
   DNA digitale molto spiccato, deriva dal Blog di Beppe Grillo e dall'azienda di Gianroberto Casaleggio.
   Piattaforma digitale per democrazia digitale: Rousseau.
@@ -35,10 +35,10 @@ Il mondo in cui viviamo
   - **SnapChat** testi, foto, video che vengono inviati scompaiono entro 24 ore
   - l'uso delle App supera quello del web
 - 2012
-  - la tv diventa digitale anche in Italia
+  - la TV diventa digitale anche in Italia
   - **Tinder**
 - 2016
-  - una macchina sviluppata da Google vince a Go contro il n.ro 1 della classifica mondiale.
+  - una macchina sviluppata da Google vince a Go contro il n.1 della classifica mondiale.
   Il software memorizzò 30 milioni di partite ma era capace di imparare e fare di testa propria, inventare mosse mai viste, applicare strategie -> **intelligenza artificiale**
 
 ## Commentari epoca del Game

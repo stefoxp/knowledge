@@ -8,5 +8,3 @@ Ispirato da  @voxsim https://github.com/voxsim/knowledge
 - [Linguaggi](Linguaggi);
 - [Saggistica](Saggistica);
 - [Strumenti](Strumenti);
-
-
