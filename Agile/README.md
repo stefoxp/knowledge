@@ -10,7 +10,7 @@
 - [Test Driven Development: By Example](https://www.goodreads.com/book/show/387190.Test_Driven_Development) - Kent Beck
 - [Clean Code: A Handbook of Agile Software Craftsmanship](https://www.goodreads.com/book/show/3735293-clean-code) - R.C.Martin
 - [Guida Galattica per Agilisti](https://www.guidagalatticaperagilisti.com/) - Stefano Leli, Pierluigi Pugliese, Giovanni Puliti, Giulio Roggero
-- [Continuous Delivery: Reliable Software Releases Through Build, Test, and Deployment Automation](https://www.goodreads.com/book/show/8686650-continuous-delivery) - Jez Humble, David Farley 
+- [Continuous Delivery: Reliable Software Releases Through Build, Test, and Deployment Automation](https://www.goodreads.com/book/show/8686650-continuous-delivery) - Jez Humble, David Farley
 - [Growing Object Oriented Software Guided By Tests](https://www.goodreads.com/book/show/4268826-growing-object-oriented-software-guided-by-tests) - S.Freeman, N.Pryce
 - [Intelligenza emotiva](https://www.goodreads.com/book/show/9652008-intelligenza-emotiva) - Daniel Goleman
 
