@@ -14,10 +14,14 @@
 - [Growing Object Oriented Software Guided By Tests](https://www.goodreads.com/book/show/4268826-growing-object-oriented-software-guided-by-tests) - S.Freeman, N.Pryce
 - [Intelligenza emotiva](https://www.goodreads.com/book/show/9652008-intelligenza-emotiva) - Daniel Goleman
 
+### Sto leggendo
+
+- [Kanban in action](KanbanInAction)
+
 ### Da leggere
 
 - [Coaching Agile Teams: A Companion for Scrummasters, Agile Coaches, and Project Managers in Transition](https://www.goodreads.com/book/show/8337919-coaching-agile-teams) - Lyssa Adkins
 - [Kanban: Successful Evolutionary Change for Your Technology Business](https://www.goodreads.com/book/show/8086552-kanban) - David J. Anderson
-- [Kanban in action](https://www.goodreads.com/book/show/17789383-kanban-in-action) - Marcus Hammarberg, Joakim Sundén
+
 - [Refactoring: Improving the Design of Existing Code](https://www.goodreads.com/book/show/44936.Refactoring) - Martin Fowler
 - [Working Effectively with Legacy Code](https://www.goodreads.com/book/show/44919.Working_Effectively_with_Legacy_Code) - Michael C. Feathers
