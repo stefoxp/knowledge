@@ -9,7 +9,7 @@
 ## Part 2 - Understanding Kanban
 
 2. [Kanban Principles](02_kanban_principles.md)
-3. Visualizing your work
+3. [Visualizing your work](03_visualizing_your_work.md)
 4. Work items
 5. Work in process
 6. Limiting work in process
