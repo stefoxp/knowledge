@@ -1,6 +1,6 @@
 # Kanban in action (Marcus Hammarberg, Joakim Sundén)
 
->[Book](https://www.goodreads.com/book/show/17789383-kanban-in-action)
+>[Book reviews](https://www.goodreads.com/book/show/17789383-kanban-in-action)
 
 ## Part 1 - Learning Kanban
 
@@ -10,7 +10,7 @@
 
 2. [Kanban Principles](02_kanban_principles.md)
 3. [Visualizing your work](03_visualizing_your_work.md)
-4. Work items
+4. [Work items](04_work_items.md)
 5. Work in process
 6. Limiting work in process
 7. Managing flow
