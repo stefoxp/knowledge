@@ -12,5 +12,5 @@
 3. [Visualizing your work](03_visualizing_your_work.md)
 4. [Work items](04_work_items.md)
 5. [Work in process](05_work_in_process.md)
-6. Limiting work in process
+6. [Limiting work in process](06_limiting_work_in_process.md)
 7. Managing flow
