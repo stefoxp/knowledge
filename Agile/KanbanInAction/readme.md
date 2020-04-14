@@ -13,4 +13,4 @@
 4. [Work items](04_work_items.md)
 5. [Work in process](05_work_in_process.md)
 6. [Limiting work in process](06_limiting_work_in_process.md)
-7. Managing flow
+7. [Managing flow](07_managing_flow.md)
