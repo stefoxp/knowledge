@@ -1,6 +1,8 @@
-# Kanban in action (Marcus Hammarberg, Joakim Sundén)
+# Kanban in action
 
->[Book reviews](https://www.goodreads.com/book/show/17789383-kanban-in-action)
+Marcus Hammarberg, Joakim Sundén
+
+>[Book reviews on GoodReads.com](https://www.goodreads.com/book/show/17789383-kanban-in-action)
 
 ## Part 1 - Learning Kanban
 
