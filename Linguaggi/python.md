@@ -12,3 +12,4 @@
 ### Da leggere
 
 - [Python 3 Object Oriented Programming](https://www.goodreads.com/book/show/8679996-python-3-object-oriented-programming) - Dusty Phillips
+- [Python Testing with pytest](https://www.goodreads.com/book/show/34695799-python-testing-with-pytest) -  Brian Okken
