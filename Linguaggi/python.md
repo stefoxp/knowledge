@@ -9,7 +9,10 @@
 - [Learning Python Testing](https://www.goodreads.com/book/show/24159070-learning-python-testing) - Daniel Arbuckle
 - [Clean Architectures in Python](https://www.goodreads.com/book/show/43347928-clean-architectures-in-python) - Leonardo Giordani
 
+### Sto leggendo
+
+- [Python Testing with pytest](python_testing_with_pytest.md)
+
 ### Da leggere
 
 - [Python 3 Object Oriented Programming](https://www.goodreads.com/book/show/8679996-python-3-object-oriented-programming) - Dusty Phillips
-- [Python Testing with pytest](https://www.goodreads.com/book/show/34695799-python-testing-with-pytest) -  Brian Okken
