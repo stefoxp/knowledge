@@ -425,3 +425,115 @@ The warnings are collected at the beginning of the test. You can use recwarn.cle
 
 In addition to recwarn, pytest can check for warnings with pytest.warns().
 The pytest.warns() context manager provides an elegant way to demark what portion of the code you're checking warnings.
+
+## Plugins
+
+### Finding Plugins
+
+- [https://docs.pytest.org/en/latest/plugins.html](https://docs.pytest.org/en/latest/plugins.html)
+- [https://pypi.python.org](https://pypi.python.org)
+- [https://github.com/pytest-dev](https://github.com/pytest-dev)
+
+### Installing Plugins
+
+#### Install from PyPI
+
+>pip install pytest-cov
+
+#### Install a Particular Version from  PyPI
+
+>pip install pytest-cov==2.4.0
+
+#### Install from a .tar.gz or .whl File
+
+>pip install pytest-cov-2.4.0.tar.gz
+
+#### Install from a Local Directory
+
+You can keep a local stash of plugins in a local or shared directory in .tar.gz or .whl format.
+
+--no-index option tells pip to not connect to PyPI.
+
+#### Install from a Git Repository
+
+### Writing Your Own Plugins
+
+A handful of fixtures that you want to share between a couple of projects can be shared easily by creating a plugin.
+
+Plugin can include hook functions that alter pytest's behavior.
+
+### Creating an Installable Plugin
+
+We need to create a new directory to put our plugin code.
+
+```bash
+# for example
+
+pytest-nice
+​ ├── LICENCE
+​ ├── README.rst
+​ ├── pytest_nice.py
+​ ├── setup.py
+​ └── tests
+​ ├── conftest.py
+​ └── test_nice.py
+```
+
+In **pytest_nice.py**, we'll put the exact contents of our conftest.py that were related to this feature.
+
+In **setup.py**, we need a very minimal call to setup().
+All the parameters to setup() are standard and used for all Python installers.
+The piece that is different for pytest plugin is the entry_points parameter:
+
+entry_points={'pytest11': ['nice = pytest_nice', ], },
+
+pytest11 is a special identifier that pytest looks for.
+With this line, we are telling pytest that nice is the name of our plugin, and pytest_nice is the name of the module where our plugin lives.
+
+Some form of **README** is a requirement by setuptools.
+
+### Testing Plugins
+
+Plugins are code that needs to be tested just like any other code.
+
+We can test in an automated way using a plugin called **pytester** that ships with pytest but is disabled by default.
+
+Our test directory for pytest-nice has two files: conftest.py and test_nice.py.
+
+To use pytester, we need to add to conftest.py:
+
+```python
+pytest_plugins = 'pytester'
+```
+
+This turns on the pytester plugin.
+
+The process of testing is:
+
+- make an example test file
+- run pytest with or without some options in the directory that contains our example file
+- examine the output
+- possibly check the result code - 0 for all passing, 1 for some failing
+
+The **testdir** fixture automatically creates a temporary directory for us to put test files.
+It has a method called **makepyfile()** that allows us to put in the contents of a test file.
+
+We run pytest against the new test file with **testdir.runpytest()**.
+The return value can then be examined further, and is of type *RunResult*.
+
+Usually, I look at stdout and ret.
+For checking the output like we did manually, use **fnmatch_lines()**, passing in a list of strings that we want to see in the output, and then making sure that ret is 0 for passing sessions and 1 for failing sessions.
+
+To run the tests, let's start in our pytest-nice directory and make sure our plugin is installed:
+
+> $ ..../pytest-nice/ pip install .
+
+### Creating a Distribution
+
+From the command line, we can use this setup.py file to create a distribution:
+
+> $ python setup.py sdist
+
+#### Distributing Plugins Through s Shared Directory
+
+#### Distributing Plugins Through PyPI
