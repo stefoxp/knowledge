@@ -537,3 +537,149 @@ From the command line, we can use this setup.py file to create a distribution:
 #### Distributing Plugins Through s Shared Directory
 
 #### Distributing Plugins Through PyPI
+
+## Configuration
+
+### Understanding pytest Configuration Files
+
+- **pytest.ini**: is the primary pytest configuration file that allows you to change default behavior.
+- **conftest.py**: is a local plugin to allow hook functions and fixtures for the directory where the conftest.py file exists and all subdirectories.
+- **__init__.py**: into every test subdirectory, this file allows you to have identical test filenames in multiple test directories.
+
+If you use **tox**: tox.ini
+
+If you want to distribute a Python package:
+
+- **setup.cfg**: is a file that's also in ini file format and affects the behavior of setup.py
+
+Regardless of which file you put your pytest configuration in, the format will mostly be the same.
+
+```ini
+pytest.ini
+
+[pytest]
+addopts = -rsxX -l --tb=short --strict
+xfail_strict = true
+... more options ...
+```
+
+```cfg
+... packaging specific stuff ...
+setup.cfg
+
+[tool:pytest]
+addopts = -rsxX -l --tb=short --strict
+xfail_strict = true
+... more options ...
+```
+
+#### List the Valid ini-file Options with pytest --help
+
+#### Plugins Can Add ini-file Options
+
+### Changing the Default Command-Line Options
+
+If you set addopts in pytest.ini to the options you want, you don't have to type them in anymore.
+
+> addopts = -rsxX -l --tb=short --strict
+
+- -rsxX tells pytest to report the reasons for all tests that skipped, xfailed, or xpassed.
+- -l tells pytest to report the local variables for every failure with the stacktrace
+- --tb=short removes a lot of the stack trace
+- --strict disallows markers to be used if they aren't registered in a config file.
+
+### Registering Markers to Avoid Marker Typos
+
+It is easy to misspell a marker and end up having some tests marked with @pytest.mark.smoke and some marked with @pytest.mark.somke. This isn't an error. pytest just thinks you created two markers.
+
+This can be fixed by registering markers in pytest.ini:
+
+```ini
+pytest.ini
+
+[pytest]
+markers =
+smoke: Run the smoke test functions for task project
+get: Run the test functions that test tasks.get()
+```
+
+With these markers registered, you can now also see them with pytest --markers with their descriptions:
+
+> $ pytest --markers
+
+With them registered, and if you use --strict, any misspell or unregistered markers show up as an error.
+
+### Requiring a Minimum pytest Version (only >= 3.0)
+
+```ini
+pytest.ini
+
+[pytest]
+minversion = 3.0
+```
+
+### Stopping pytest from Looking in the Wrong Places
+
+All directories *starting with a dot* will not be traversed.
+
+```ini
+pytest.ini
+
+[pytest]
+norecursedirs = .* venv src *.egg dist build
+```
+
+When overriding a setting that already has a useful value, like this setting, it's a good idea to know what the defaults are and put the ones back you care about (es. *.egg dist build).
+
+### Specifying Test Directory Locations
+
+testpaths tells pytest where to look. It is a list of directories relative to the root directory to look in for tests. It's only used if a directory, file, or nodeid is not given as an argument.
+
+This setting doesn't help much with interactive testing but it's great for tests launched from a continuous integration server.
+
+### Changing Test Discovery Rules
+
+The standard test discovery rules are:
+
+- start at one or more directory
+- look in the directory and all subdirectories recursively for test modules
+- a test module is a file with a name that looks like test_*.py or *_test.py
+- look in test modules for functions that start with test_
+- look for classes that start with Test. Look for methods in those classes that start with test_ but don't have an __init__ method
+
+You can change this rules.
+
+#### python_classes
+
+```ini
+pytest.ini
+
+[pytest]
+python_classes = *Test Test* *Suite
+```
+
+#### python_files
+
+```ini
+pytest.ini
+
+[pytest]
+python_files = test_* *_test check_*
+```
+
+#### python_functions
+
+```ini
+pytest.ini
+
+[pytest]
+python_functions = test_* check_*
+```
+
+### Disallowing XPASS
+
+Setting xfail_strict = true causes tests marked with @pytest.mark.xfail that don't fail to be reported as an error.
+
+### Avoiding Filename Collisions
+
+If you have __init__.py file in all of your test subdirectories, you can have the same test filename show up in multiple directories.
