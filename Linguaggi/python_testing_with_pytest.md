@@ -396,8 +396,8 @@ During testing, it is a convenient way to take over part of the runtime environm
 
 The **monkeypatch** fixture provides the following functions:
 
-- setattr(target, name, value=<noset>, raising=True): Set an attribute
-- delattr(target, name=<noset>, raising=True): Delete an attribute
+- setattr(target, name, value=noset, raising=True): Set an attribute
+- delattr(target, name=noset, raising=True): Delete an attribute
 - setitem(dic, name, value): Set a dictionary item
 - delitem(dic, name, raising=True): Delete a dictionary entry
 - setenv(name, value, prepend=None): Set an environmental variable
@@ -683,3 +683,125 @@ Setting xfail_strict = true causes tests marked with @pytest.mark.xfail that don
 ### Avoiding Filename Collisions
 
 If you have __init__.py file in all of your test subdirectories, you can have the same test filename show up in multiple directories.
+
+## Using pytest with Other Tools
+
+### pdb: Debugging Test Failures
+
+You use --pdb to have pytest start a debugging session at the point of failure.
+
+pytest options available to help speed up debugging test failures:
+
+- --tb=[auto/long/short/line/native/no]: Controls the traceback style.
+- -v / --verbose: Displays all the test names, passing or failing.
+- -l / --showlocals: Displays local variables alongside the stacktrace.
+- -lf / --last-failed: Runs just the tests that failed last.
+- -x / --exitfirst: Stops the tests session with the first failure.
+- --pdb: Starts an interactive debugging session at the point of failure.
+
+### Coverage.py: Determining How Much Code Is Tested
+
+Code coverage tools are great for telling you which parts of the system are being completely missed by tests.
+
+**Coverage.py** is the preferred Python coverage tool that measures code coverage.
+
+You need install it and install a plugin called **pytest-cov** that will allow you to call coverage.py from pytest with some extra pytest options.
+
+run our baseline coverage report:
+
+> $ pytest --cov=src
+
+generate an HTML report:
+
+> $ pytest --cov=src --cov-report=html
+
+While code coverage tools are extremely useful, striving for 100% coverage can be dangerous.
+
+### mock: Swapping Out Part of the System
+
+Mock objects are sometimes called test doubles, spies, fakes, or stubs.
+
+For use with pytest, a plugin called **pytest-mock** has some conveniences that make it my preferred interface to the mock system.
+
+### tox: Testing Multiple Configurations
+
+tox is a command-line tool that allows you to run your complete suite of tests in multiple environments.
+
+tox uses the setup.py file for the package under test to create an installable source distribution of your package. It looks in tox.ini for a list of environments and then for each environment...
+
+1. tox creates a virtual environment in a .tox directory
+2. tox pip installs some dependencies
+3. tox pip installs your package from the sdist in step 1
+4. tox runs your tests
+
+After all of the environments are tested, tox reports a summary of how they all did.
+
+```ini
+tox.ini, put in same dir as setup.py
+
+[tox]
+envlist = py27, py36
+
+[testenv]
+deps=pytest
+commands=pytest
+
+[pytest]
+addopts = -rsxX -l -tb=short --strict
+markers =
+smoke: Run the smoke test test functions
+get: Run the test functions that test tasks.get()
+```
+
+### Jenkins CI: Automating Your Automated Tests
+
+Continuous integration systems are frequently used to launch test suites after each code commit. pytest includes options to generate junit.xml-formatted files required by Jenkins and other CI systems to display test results.
+
+When using Jenkins for running pytest suites, there are a few Jenkins plugins that you may find useful:
+
+- build-name-setter
+- Test Results Analyzer plugin
+
+```bash
+run_tests.bash
+
+#!/bin/bash
+
+# your paths will be different
+top_path=/Users/okken/projects/book/bopytest/Book
+code_path=${top_path}/code
+venv_path=${top_path}/venv
+tasks_proj_dir=${code_path}/$1
+start_tests_dir=${code_path}/$2
+results_dir=$3
+
+# click and Python 3,
+# from http://click.pocoo.org/5/python3/
+export LC_ALL=en_US.utf8
+export LANG=en_US.utf8
+
+# virtual environment
+source ${venv_path}/bin/activate
+
+# install project
+pip install -e ${tasks_proj_dir}
+
+# run tests
+cd ${start_tests_dir}
+pytest --junit-xml=${results_dir}/results.xml
+```
+
+### unittest: Running Legacy Tests with pytest
+
+pytest works as a unittest runner, and can run both pytest and unittest tests in the same session.
+
+You can leave all the old tests as unittest, and write new ones in pytest.
+
+You can also gradually migrate older tests.
+There are a couple of issues that might trip you up in the migration.
+
+Is possible to use the pytest session scope fixture with the unittest tests by adding @pytest.mark.usefixtures() decorators at the class or method level.
+
+The ability to use marks has a limitation: you cannot use parametrized fixtures with unittest-based tests.
+
+Another limitation with running unittest with pytest is that unittest subtests will stop at the first failure, while unittest will run each subtest, regardless of failures.
