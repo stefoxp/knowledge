@@ -12,4 +12,9 @@
 
 ### Sto leggendo
 
+- [Programming in Python 3: A Complete Introduction to the Python Language](https://www.goodreads.com/book/show/4988121-programming-in-python-3) - Mark Summerfield
 - [Python 3 Object Oriented Programming](https://www.goodreads.com/book/show/8679996-python-3-object-oriented-programming) - Dusty Phillips
+
+### Da leggere
+
+- [Python: Programmazione avanzata (Guida completa)](https://www.goodreads.com/book/show/25778429-python) - Mark Summerfield
