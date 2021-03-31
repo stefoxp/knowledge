@@ -1,7 +1,7 @@
 # Kanban principles
 
-Kanban is like a metaprocess that can be applied to whatever process you're working with today.
-No new processes, no new rules, and no troublesome reorganisations needed.
+Kanban is like a meta-process that can be applied to whatever process you're working with today.
+No new processes, no new rules, and no troublesome reorganizations needed.
 
 ## The principles of kanban
 
@@ -24,7 +24,7 @@ David Anderson uses principles to describe some other principles:
 
 - Start where you are
 - Agree to pursue incremental, evolutionary change
-- Initially, respect current roles, responsabilities, and job titles
+- Initially, respect current roles, responsibilities, and job titles
 - Leadership at all levels in the organization
 
 ## Get started right away

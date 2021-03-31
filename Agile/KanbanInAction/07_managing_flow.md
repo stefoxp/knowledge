@@ -259,7 +259,7 @@ Example: the board, at the beginning of the day, looks like this:
 ![Bottlenecks board](img/bottlenecks_board.png)
 
 After a little while, the developers want to pull in new work. There's only one item in Development/Doing.
-The developers pull a new work item from the Analize/Done column:
+The developers pull a new work item from the Analyze/Done column:
 
 ![Bottlenecks board 2](img/bottlenecks_board_2.png)
 

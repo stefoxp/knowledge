@@ -29,7 +29,7 @@ Physical board Pros:
 - generally easier to set up
 - easier to change and adjust to your particular needs
 
-### Co-location? Luxury!
+### Co-location? Luxury
 
 Maybe you and your team don't have the luxury of sitting together.
 The decision to use an electronic tool or not should be left to the team.

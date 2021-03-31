@@ -41,7 +41,7 @@ Unless you're doing **mob programming**.
 
 This can be a simple way to get started: to limit the total number of work items on the board for the whole team.
 
-### Take one! Take two!
+### Take one! Take two
 
 You could start out boldly and decide on a WIP limit of one per person:
 

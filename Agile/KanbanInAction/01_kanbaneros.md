@@ -15,7 +15,7 @@
 - Identify all the stages, from work entering to work leaving the team
 - Don't strive for perfection
   - Inspect and adapt
-- Work ins't done until it's producing value to the customer
+- Work isn't done until it's producing value to the customer
 - With a visualized workflow you can see:
   - Status of work
   - Potential problems such as work not progressing and piling up in a stage
@@ -80,7 +80,6 @@ Expedite lane:
 - Two common and useful metrics are:
   - **Lead Time** is the time for the whole workflow
   - **Throughput** is how much or how many work items you complete over a period of time
-
 
 Resources:
 
