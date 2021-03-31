@@ -1,8 +1,14 @@
 # Python Testing with pytest
 
-Brian Okken
+This is my summary of the "Python Testing with pytest", by Brian Okken.
 
 - [Book reviews on GoodReads.com](https://www.goodreads.com/book/show/34695799-python-testing-with-pytest)
+
+I use it while learning and as quick reference. It is not intended to be an standalone substitution of the book so if you really want to learn the concepts here presented, buy and read the book and use this repository as a reference and guide.
+
+If you are the publisher and think this repository should not be public, just write me on [http://linkedin.com/in/stepasquini](http://linkedin.com/in/stepasquini) and I will make it private.
+
+Contributions: Issues, comments and pull requests are welcome.
 
 ## Writing Test Functions
 
@@ -12,7 +18,7 @@ Before to run pytest you should install locally tasks using pip.
 
 If you want to be able to modify the source code while tasks is installed, you need to install it with the -e option:
 
->pip install -e ./task_proj/
+> $ pip install -e ./task_proj/
 
 ### assert statements
 
@@ -24,66 +30,80 @@ pytest includes a feature called assert rewriting that intercepts assert calls a
 
 A test can have more than one marker, and a marker can be on multiple tests.
 
->@mark.pytest.smoke
-mark a test as "smoke".
+```python
+# mark a test as "smoke"
+@mark.pytest.smoke
+def test_...():
+```
 
 For example:
 
->pytest -v -m 'smoke' ./task_proj/tests/func/test_api_exceptions.py
+> $ pytest -v -m 'smoke' ./task_proj/tests/func/test_api_exceptions.py
 
-or:
+or
 
->pytest -v -m 'smoke'
+> $ pytest -v -m 'smoke'
 
 #### Built-in Fixture
 
->@pytest.fixture(autouse=True) use a builtin fixture
+```python
+# use a builtin fixture
+@pytest.fixture(autouse=True)
+def test... 
+```
 
 ### Skipping Tests
 
 pytest includes a few helpful builtin markers.
 
-The skip and skipif markers enable you to skip tests you don't want to run.
+The **skip** and **skipif** markers enable you to skip tests you don't want to run.
 
->@pytest.mark.skip(reason='description of the reason')
+```python
+@pytest.mark.skip(reason='description of the reason')
+def test...
 
-or
+# or
 
->@pytest.mark.skipif(tasks.__version__<'0.2.0',
+@pytest.mark.skipif(tasks.__version__<'0.2.0',
 reason='not supported until version 0.2.0')
+def test...
+```
 
-pytest -rs visualize the reason of skip tests
+> $ pytest -rs # visualize the reason of skip tests
 
 ### Marking Tests as Expecting to Fail
 
->@pytest.mark.xfail(tasks.__version__<'0.2.0',
+```python
+@pytest.mark.xfail(tasks.__version__<'0.2.0',
 reason='not supported until version 0.2.0')
+def test_...():
+```
 
 ### Running a Subset of Tests
 
 #### A Single Directory
 
->pytest directory_path --tb=no
+> $ pytest directory_path --tb=no
 
 #### A Single Test File/Module
 
->pytest file_path
+> $ pytest file_path
 
 #### A Single Test Function
 
->pytest -v file_path::function_name
+> $ pytest -v file_path::function_name
 
 #### A Single Test Class
 
->pytest -v file_path::ClassName
+> $ pytest -v file_path::ClassName
 
 #### A Single Test Method of a Test Class
 
->pytest -v file_path::ClassName::method_name
+pytest -v file_path::ClassName::method_name
 
 #### A Set of Tests Based on Test Name
 
->pytest -v -k key_in_their_name
+> $ pytest -v -k key_in_their_name
 
 ### Parametrized Testing
 
@@ -91,72 +111,74 @@ Is a way to send multiple sets of data through the same test and have pytest rep
 
 #### Single parameter
 
->@pytest.mark.parametrize('task',
+```python
+@pytest.mark.parametrize('task',
 [Task('sleep', done=True),
-...
+# ...
 ])
->
->def test_add_2(task):
+def test_add_2(task):
 
-or
+# or
 
->tasks_to_try = [Task('sleep', done=True),
+tasks_to_try = [Task('sleep', done=True),
 Task('wake', 'brian'),
 Task('breathe', 'BRIAN', True),
 Task('exercise', 'BrIaN', False)]
->
->@pytest.mark.parametrize('task', tasks_to_try)
->
->def test_add_4(task):
+
+@pytest.mark.parametrize('task', tasks_to_try)
+def test_add_4(task):
+```
 
 #### Multi-parameter
 
->@pytest.mark.parametrize('summary,owner,done',
+```python
+@pytest.mark.parametrize('summary,owner,done',
 [('sleep', None, False),
 ('wake', 'brian', False),
-...
+# ...
 ])
->
->def test_add_3(summary, owner, done):
+def test_add_3(summary, owner, done):
 
-or
+# or
 
->task_ids = ['Task({},{},{})'.format(t.summary, t.owner, t.done)
+task_ids = ['Task({},{},{})'.format(t.summary, t.owner, t.done)
 for t in tasks_to_try]
->
->@pytest.mark.parametrize('task', tasks_to_try, ids=task_ids)
->
->def test_add_5(task):
+
+@pytest.mark.parametrize('task', tasks_to_try, ids=task_ids)
+def test_add_5(task):
+```
 
 #### To class parameter
 
->tasks_to_try = [Task('sleep', done=True),
+```python
+tasks_to_try = [Task('sleep', done=True),
 Task('wake', 'brian'),
 Task('breathe', 'BRIAN', True),
 Task('exercise', 'BrIaN', False)]
->
->task_ids = ['Task({},{},{})'.format(t.summary, t.owner, t.done)
+
+task_ids = ['Task({},{},{})'.format(t.summary, t.owner, t.done)
 for t in tasks_to_try]
->
->@pytest.mark.parametrize('task', tasks_to_try, ids=task_ids)
->
->class TestAdd():
+
+@pytest.mark.parametrize('task', tasks_to_try, ids=task_ids)
+class TestAdd():
+```
 
 #### Identify parameters by including an id right alongside the parameter value
 
->@pytest.mark.parametrize('task',
->
->[
->
-> pytest.param(Task('create'), id='just summary'),
->
-> pytest.param(Task('inspire', 'Michelle'), id='summary/owner'),
->
-> pytest.param(Task('encourage', 'Michelle', True), id='summary/owner/done')
->
->])
->
->def test_add_6(task):
+```python
+@pytest.mark.parametrize('task',
+
+[
+
+ pytest.param(Task('create'), id='just summary'),
+
+ pytest.param(Task('inspire', 'Michelle'), id='summary/owner'),
+
+ pytest.param(Task('encourage', 'Michelle', True), id='summary/owner/done')
+
+])
+def test_add_6(task):
+```
 
 ## pytest Fixtures
 
@@ -166,18 +188,18 @@ The code in the fixture can do whatever you want it to.
 
 When you include the fixture name in the parameter list of a test function, pytest knows to run it before running the test.
 
-### Sharing Fixtures Through conftest.py
+### Sharing Fixtures Through `conftest.py`
 
-To share fixtures among multiple test files, you need to use a **conftest.py** file somewhere centrally located for all of the tests.
+To share fixtures among multiple test files, you need to use a `conftest.py` file somewhere centrally located for all of the tests.
 
-Although conftest.py is a Python module, it should not be imported by test files.
+Although `conftest.py` is a Python module, it should not be imported by test files.
 This file gets read by pytest, and is considered a local *plugin*.
 
 ### Using Fixtures for Setup and Teardown
 
 ### Tracing Fixture Execution with -setup-show
 
->pytest --setup-show test_add.py -k valid_id
+> $ pytest --setup-show test_add.py -k valid_id
 
 ### Using Fixtures for Test Data
 
@@ -203,7 +225,7 @@ and trying to push as much GIVEN into fixtures for two reasons:
 1. it makes the test more readable and maintainable
 2. an assert or exception in the fixture results in an ERROR, while an assert or exception in a test function results in a FAIL.
 
->pytest --setup-show test_module_name.py::test_function_name
+> $ pytest --setup-show test_module_name.py::test_function_name
 
 ### Specifying Fixture Scope
 
@@ -243,10 +265,10 @@ Fixtures can only depend on other fixtures of their same scope or wider.
 
 #### Changing Scope for Tasks Project Fixtures
 
-To have something like tasks_db be session scope, you need to use tmpdir_factory, since tmpdir is function scope and tmpdir_factory is session scope.
+To have something like tasks_db be session scope, you need to use tmpdir_factory, since **tmpdir** is function scope and **tmpdir_factory** is session scope.
 Luckily, this is just a one-line code change.
 
-On file conftest.py we changed task_db to depend on tasks_db_session, and we deleted all the entries to make sure it's empty. Because we didn't change its name, none of the fixtures or tests that already include it have to change.
+On file `conftest.py` we changed task_db to depend on tasks_db_session, and we deleted all the entries to make sure it's empty. Because we didn't change its name, none of the fixtures or tests that already include it have to change.
 
 The data fixtures just return a value, so there really is no reason to have them run all the time.
 
@@ -256,7 +278,10 @@ Once per session is sufficient.
 
 You can mark a test or a class with
 
->@pytest.mark.userfixtures('fixture1', 'fixture2')
+```python
+@pytest.mark.userfixtures('fixture1', 'fixture2')
+def ...
+```
 
 userfixtures takes a string that is composed of a comma-separated list of fixtures to use.
 It doesn't make sense to do this with test functions.
@@ -286,6 +311,7 @@ pytest allows you to rename fixtures with a name parameter to @pytest.fixture():
 
 ```python
 @pytest.fixture(name='new_name')
+def name():
 ```
 
 ### Parametrizing Fixtures
@@ -343,6 +369,7 @@ A great example is the builtin functionality of:
 - --last-failed
 - --failed-first
 
+```bash
 ​$ ​​pytest​​ ​​--help​
 ​ ​...​
 ​ --lf, --last-failed rerun only the tests that failed at the last run (or
@@ -353,14 +380,15 @@ A great example is the builtin functionality of:
 ​ --cache-show show cache contents, don't perform collection or tests
 ​ --cache-clear remove all cache contents at start of test run.
 ​ ​...
+```
 
 You can see the stored information with:
 
->pytest --cache-show
+> $ pytest --cache-show
 
 or you can look in the cache dir:
 
->$ cat .cache/v/cache/lastfailed
+> $ cat .cache/v/cache/lastfailed
 
 You can pass in --clear-cache to clear the cache before the session.
 
@@ -419,9 +447,9 @@ doctest_namespace is commonly used to add module imports into the namespace, esp
 
 The recwarn builtin fixture is used to examine warnings generated by code under test. In Python you can add warnings that work a lot like assertions, but are used for things that don't need to stop execution.
 
-The recwarn value acts like a list of warnigs, and each warning in the list has a category, message, filename, and lineno defined.
+The recwarn value acts like a list of warnings, and each warning in the list has a category, message, filename, and lineno defined.
 
-The warnings are collected at the beginning of the test. You can use recwarn.clear() to clear out the list before the chunck of the test where you do care about collecting warnings.
+The warnings are collected at the beginning of the test. You can use recwarn.clear() to clear out the list before the chunk of the test where you do care about collecting warnings.
 
 In addition to recwarn, pytest can check for warnings with pytest.warns().
 The pytest.warns() context manager provides an elegant way to demark what portion of the code you're checking warnings.
@@ -438,15 +466,15 @@ The pytest.warns() context manager provides an elegant way to demark what portio
 
 #### Install from PyPI
 
->pip install pytest-cov
+> $ pip install pytest-cov
 
 #### Install a Particular Version from  PyPI
 
->pip install pytest-cov==2.4.0
+> $ pip install pytest-cov==2.4.0
 
 #### Install from a .tar.gz or .whl File
 
->pip install pytest-cov-2.4.0.tar.gz
+> $ pip install pytest-cov-2.4.0.tar.gz
 
 #### Install from a Local Directory
 
@@ -479,13 +507,15 @@ pytest-nice
 ​ └── test_nice.py
 ```
 
-In **pytest_nice.py**, we'll put the exact contents of our conftest.py that were related to this feature.
+In `pytest_nice.py`, we'll put the exact contents of our `conftest.py` that were related to this feature.
 
-In **setup.py**, we need a very minimal call to setup().
+In `setup.py`, we need a very minimal call to setup().
 All the parameters to setup() are standard and used for all Python installers.
 The piece that is different for pytest plugin is the entry_points parameter:
 
+```python
 entry_points={'pytest11': ['nice = pytest_nice', ], },
+```
 
 pytest11 is a special identifier that pytest looks for.
 With this line, we are telling pytest that nice is the name of our plugin, and pytest_nice is the name of the module where our plugin lives.
@@ -498,9 +528,9 @@ Plugins are code that needs to be tested just like any other code.
 
 We can test in an automated way using a plugin called **pytester** that ships with pytest but is disabled by default.
 
-Our test directory for pytest-nice has two files: conftest.py and test_nice.py.
+Our test directory for pytest-nice has two files: `conftest.py` and `test_nice.py`.
 
-To use pytester, we need to add to conftest.py:
+To use pytester, we need to add to `conftest.py`:
 
 ```python
 pytest_plugins = 'pytester'
@@ -542,15 +572,15 @@ From the command line, we can use this setup.py file to create a distribution:
 
 ### Understanding pytest Configuration Files
 
-- **pytest.ini**: is the primary pytest configuration file that allows you to change default behavior.
-- **conftest.py**: is a local plugin to allow hook functions and fixtures for the directory where the conftest.py file exists and all subdirectories.
-- **__init__.py**: into every test subdirectory, this file allows you to have identical test filenames in multiple test directories.
+- `pytest.ini` is the primary pytest configuration file that allows you to change default behavior.
+- `conftest.py` is a local plugin to allow hook functions and fixtures for the directory where the `conftest.py` file exists and all subdirectories.
+- `__init__.py` into every test subdirectory, this file allows you to have identical test filenames in multiple test directories.
 
-If you use **tox**: tox.ini
+If you use **tox** `tox.ini`
 
 If you want to distribute a Python package:
 
-- **setup.cfg**: is a file that's also in ini file format and affects the behavior of setup.py
+- `setup.cfg` is a file that's also in ini file format and affects the behavior of `setup.py`
 
 Regardless of which file you put your pytest configuration in, the format will mostly be the same.
 
@@ -563,7 +593,7 @@ xfail_strict = true
 ... more options ...
 ```
 
-```cfg
+```ini
 ... packaging specific stuff ...
 setup.cfg
 
@@ -581,7 +611,9 @@ xfail_strict = true
 
 If you set addopts in pytest.ini to the options you want, you don't have to type them in anymore.
 
-> addopts = -rsxX -l --tb=short --strict
+```ini
+addopts = -rsxX -l --tb=short --strict
+```
 
 - -rsxX tells pytest to report the reasons for all tests that skipped, xfailed, or xpassed.
 - -l tells pytest to report the local variables for every failure with the stacktrace
@@ -592,7 +624,7 @@ If you set addopts in pytest.ini to the options you want, you don't have to type
 
 It is easy to misspell a marker and end up having some tests marked with @pytest.mark.smoke and some marked with @pytest.mark.somke. This isn't an error. pytest just thinks you created two markers.
 
-This can be fixed by registering markers in pytest.ini:
+This can be fixed by registering markers in `pytest.ini`:
 
 ```ini
 pytest.ini
@@ -682,7 +714,7 @@ Setting xfail_strict = true causes tests marked with @pytest.mark.xfail that don
 
 ### Avoiding Filename Collisions
 
-If you have __init__.py file in all of your test subdirectories, you can have the same test filename show up in multiple directories.
+If you have `__init__.py` file in all of your test subdirectories, you can have the same test filename show up in multiple directories.
 
 ## Using pytest with Other Tools
 
@@ -703,9 +735,9 @@ pytest options available to help speed up debugging test failures:
 
 Code coverage tools are great for telling you which parts of the system are being completely missed by tests.
 
-**Coverage.py** is the preferred Python coverage tool that measures code coverage.
+`Coverage.py` is the preferred Python coverage tool that measures code coverage.
 
-You need install it and install a plugin called **pytest-cov** that will allow you to call coverage.py from pytest with some extra pytest options.
+You need install it and install a plugin called **pytest-cov** that will allow you to call `coverage.py` from pytest with some extra pytest options.
 
 run our baseline coverage report:
 
@@ -727,7 +759,7 @@ For use with pytest, a plugin called **pytest-mock** has some conveniences that 
 
 tox is a command-line tool that allows you to run your complete suite of tests in multiple environments.
 
-tox uses the setup.py file for the package under test to create an installable source distribution of your package. It looks in tox.ini for a list of environments and then for each environment...
+tox uses the `setup.py` file for the package under test to create an installable source distribution of your package. It looks in tox.ini for a list of environments and then for each environment...
 
 1. tox creates a virtual environment in a .tox directory
 2. tox pip installs some dependencies
@@ -763,7 +795,7 @@ When using Jenkins for running pytest suites, there are a few Jenkins plugins th
 - Test Results Analyzer plugin
 
 ```bash
-run_tests.bash
+# run_tests.bash
 
 #!/bin/bash
 
