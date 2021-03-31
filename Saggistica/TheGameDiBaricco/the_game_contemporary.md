@@ -29,10 +29,10 @@ audizione di Zuckerberg al Senato USA 2018
 18. scricchiolio del Game iniziato nel 2007
 19. il principale difetto del Game è banale, riscontrabile in tutti i sistemi derivanti da movimenti insurrezionali.
 L'idea di umanità aumentata ha una sua bellezza ma la deriva è umanità aumentata, rinnovata percezione di sé, individualismo di massa, egoismo di massa;
-20. le principali disfunzioni del Game sono tre: 
-a) è **difficile**. Aperto, multiforme, non si spegne mai. Bisogna avere skill non indifferenti;
-b) è un **sistema nato per redistribuire potere ma** ha finito per distribuire possibilità ottenendo il risultato di creare delle concentrazioni di potere immani;
-c) **lasciare intatte le grandi fortezze del '900: Stato, Scuola, Chiese ha avuto spiacevoli conseguenze.
+20. le principali disfunzioni del Game sono tre:
+  a) è **difficile**. Aperto, multiforme, non si spegne mai. Bisogna avere skill non indifferenti;
+  b) è un **sistema nato per redistribuire potere ma** ha finito per distribuire possibilità ottenendo il risultato di creare delle concentrazioni di potere immani;
+  c) **lasciare intatte le grandi fortezze del '900: Stato, Scuola, Chiese ha avuto spiacevoli conseguenze.
 Le soluzioni a questi problemi le può trovare solo un'intelligenza che ha la loro età.
 21. il Game sprigionerà tutte le sue potenzialità solo quando sarà interamente disegnato da intelligenze da lui disegnate
 22. solo una generazione di nativi digitali potrà disegnare soluzioni che oggi non ci sono

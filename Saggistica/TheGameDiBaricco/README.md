@@ -1,6 +1,17 @@
 # The Game di Alessandro Baricco
 
->[Libro](https://www.goodreads.com/book/show/42098125-the-game)
+Questi sono i miei appunti da "The Game" di Alessandro Baricco.
+
+- [Book reviews on GoodReads.com](https://www.goodreads.com/book/show/42098125-the-game)
+
+Uso questi appunti come reference rapida.
+Non vanno usati in sostituzione del libro. Se volete approfondire i concetti presentati, acquistate il libro.
+
+Se l'editore ritiene che questo repository debba essere privato, è sufficiente che mi scriva su [http://linkedin.com/in/stepasquini](http://linkedin.com/in/stepasquini).
+
+Contributi: Issues, comments and pull requests sono benvenuti.
+
+## Introduzione
 
 Un nuovo tipo di intelligenza ha generato i computer. Una mutazione mentale si è procurata gli strumenti adatti al suo modo di stare al mondo e lo ha fatto velocemente: rivoluzione digitale.
 

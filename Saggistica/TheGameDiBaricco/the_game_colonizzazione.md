@@ -79,7 +79,7 @@ Tratti necessari per sopravvivere:
 
 ### Superficialità (pensare alla rovescia)
 
- **Iceberg**: la complessità nascosta sotto la superficie (icone). Premio sopra, fatica sotto -> l'opposto rispetto al Novecento. 
+ **Iceberg**: la complessità nascosta sotto la superficie (icone). Premio sopra, fatica sotto -> l'opposto rispetto al Novecento.
  Es. iPhone, Google con la sua pagina iniziale.
 L'insurrezione digitale liberava il nocciolo dell'esperienza sulla superficie del mondo.
 Essenza ed apparenza coincidono.
