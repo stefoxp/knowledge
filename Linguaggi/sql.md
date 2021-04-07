@@ -73,7 +73,7 @@ Tipi di join:
 
 - **equi join** restituisce una tabella le cui righe sono tutte e sole quelle ottenute dalle due tabelle collegate in cui i valori della colonna comune sono uguali.
 Si ottiene utilizzando SELECT e WHERE con la condizione di uguaglianza.
-- **inner join** è simile al precedente ma con la condizione che può essere diversa dall'ugualianza.
+- **inner join** è simile al precedente ma con la condizione che può essere diversa dall'uguaglianza.
 Si può ottenere utilizzando SELECT e WHERE oppure con la nuova sintassi:
 
 ```sql
@@ -93,3 +93,309 @@ Può essere:
 Si ottiene mediante SELECT oppure INNER JOIN senza NATURAL, ON o USING
 - **self join** correla una tabella con sè stessa.
 Utilizza due alias della stessa tabella.
+
+### Operazioni su insiemi
+
+Solo l'operatore UNION viene implementato da tutti i DBMS.
+
+- **UNION** restituisce una tabella a partire dai risultati di due SELECT.
+La tabella restituita contiene tutte le righe delle due tabelle di partenza.
+
+```sql
+<comando_select> UNION [ALL] <comando_select>
+```
+
+I due operandi devono possedere la stessa struttura.
+UNION rimuove i valori duplicati se non si utilizza ALL.
+
+- **EXCEPT** restituisce una tabella che contiene tutte le righe del primo operando che non trovano corrispondenza nel secondo
+- **INTERSECT** restituisce una tabella che contiene le righe che compaiono sia nel primo che nel secondo operando
+
+### Sub-query
+
+E' un comando SELECT racchiuso fra parentesi tonde ed inserito all'interno di un comando SQL.
+Può essere:
+
+- *scalare* se restituisce un singolo valore e può essere utilizzata ovunque serva un valore singolo
+- *di colonna* se restituisce una sola colonna
+- *di tabella* se restituisce una tabella
+
+Possono essere utilizzate nelle espressioni di confronto, nelle espressioni IN, EXISTS, nel calcolo di espressioni.
+
+### Read, Update, Delete
+
+- **INSERT** per l'inserimento di dati in una tabella.
+
+```sql
+INSERT INTO <nome_tabella>
+[<lista_colonne>]<origine>
+
+-- <origine> può essere:
+VALUES <lista_valori>
+-- lo standard non prevede questa istruzione
+
+-- un'altra tabella che possiede la stessa struttura
+SELECT * 
+FROM <nome_tabella>
+```
+
+- **UPDATE** per la modifica dei dati.
+
+```sql
+UPDATE <nome_tabella>
+SET <nome_colonna> = <espressione>
+[, ...]
+[WHERE <condizione>]
+```
+
+- **DELETE** per l'eliminazione.
+
+```sql
+DELETE
+FROM <nome_tabella>
+[WHERE <condizione>]
+```
+
+### Definizione del database
+
+#### Creazione dello schema
+
+Lo **schema** contiene la definizione di tutte le tabella del database.
+Il proprietario dello schema è l'amministratore del database e possiede tutti i privilegi possibili sugli elementi che verranno definiti all'interno dello schema.
+Il **catalogo** è l'insieme delle definizioni di tutti gli schemi che possiedono condizioni comuni. E' definito come meta-database e viene associato ad uno schema speciale (INFORMATION_SCHEMA) che contiene le definizioni dei dati del catalogo.
+
+```sql
+CREATE SCHEMA <clausola_di_autorizzazione>
+[DEFAULT CHARACTER SET <set_di_caratteri>]
+[<elemento_dello_schema> ...]
+
+-- dove <clausola_di_autorizzazione> ha la sintassi
+[<nome_catalogo>.]<nome_schema> |
+AUTHORIZATION <nome_proprietario> |
+<nome_schema> AUTHORIZATION <nome_proprietario>
+
+-- <elemento_dello_schema> comprende la definizione di tabelle, viste, altro
+```
+
+#### Creazione delle tabelle
+
+Ne sono presenti di due tipi: permanenti e temporanee (non sono supportate da molti DBMS).
+
+```sql
+CREATE [{GLOBAL | LOCAL} TEMPORARY] TABLE <nome_tabella>
+(<definizione_elemento_tabella>
+[, <definizione_elemento_tabella> ...])
+[ON COMMIT {PRESERVE | DELETE} ROWS]
+
+-- dove <definizione_elemento_tabella> è
+<definizione_colonna> | <definizione_vincolo_di_tabella>
+
+-- le opzioni [GLOBAL ...] e [ON COMMIT ...] sono disponibili per le sole tabelle temporanee
+```
+
+#### Creazione delle colonne
+
+```sql
+<nome_colonna> <tipo_dati>
+[<clausola_default>]
+[<definizione_vincolo_di_colonna>]
+```
+
+### Tipi di dati
+
+1. numerici
+   1. intero (tinyint, smallint, integer)
+   2. decimale
+   3. in virgola mobile (decimale seguito da un esponente)
+2. alfanumerici, stringa di 0 o più caratteri racchiusi fra virgolette semplici. (max 255 escluse le virgolette)
+3. temporali
+   1. data, composta da 'anno-mese-giorno'
+   2. ora, composta da 'ore:minuti:secondi'
+   3. timestamp, combina data e ora
+   4. intervallo, rappresenta un periodo di tempo.
+   Si definisce con INTERVAL 'valore' DAY oppure INTERVAL 'valore' MINUTE, oppure YEAR TO MONTH oppure HOUR TO SECOND
+
+### Vincoli di integrità
+
+```sql
+-- di colonna
+[CONSTRAINT <nome_vincolo>]
+{<vincolo_NOT NULL> |
+<vincolo_di_univocità> |
+<vincolo_di_chiave_esterna> |
+<vincolo_di_controllo>}
+[<attributi_del_vincolo>]
+
+-- di tabella
+[CONSTRAINT <nome_vincolo>]
+{<vincolo_di_univocità> |
+<vincolo_di_chiave_esterna> |
+<vincolo_di_controllo>}
+[<attributi_del_vincolo>]
+
+-- dove <attributi_del_vincolo> è
+[NOT] DEFERRABLE
+[INITIALLY IMMEDIATE | INITIALLY DEFERRED] |
+[INITIALLY IMMEDIATE | INITIALLY DEFERRED] |
+...
+[NOT] DEFERRABLE
+```
+
+Il vincolo NOT NULL stabilisce che i valori della colonna sono obbligatori.
+
+Il vincolo di univocità può essere UNIQUE o PRIMARY KEY.
+
+Il vincolo di chiave esterna, per l'integrità referenziale, fa sì che ad ogni valore non nullo della tabella che contiene la chiave esterna del join deve corrispondere uno ed un sol valore nella tabella che contiene la chiave primaria.
+
+```sql
+-- di colonna
+REFERENCES <tabella_riferita>
+[<colonna_riferita> [, <colonna_riferita> ...]]
+[MATCH {FULL | PARTIAL}]
+[<azione_innescata>]
+
+-- di tabella
+FOREIGN KEY (<colonne_referenti>)
+REFERENCES <tabella_riferita>
+[<colonna_riferita> [, <colonna_riferita> ...]]
+[MATCH {FULL | PARTIAL}]
+[<azione_innescata>]
+```
+
+Le colonne referenti sono quelle che fungono da chiave esterna, quelle riferite sono chiavi primarie.
+
+La clausola <azione_innescata> ha la sintassi:
+
+```sql
+ON UPDATE [<azione>][ON DELETE [<azione>]] |
+ON DELETE [<azione>][ON UPDATE [<azione>]]
+
+-- dove <azione> è
+CASCADE | SET NULL | SET DEFAULT | NO ACTION
+```
+
+I vincoli di controllo sono utilizzati per verificare generiche condizioni sui valori di una colonna.
+
+```sql
+CHECK (<condizione>)
+```
+
+Non possono contenere funzioni dipendenti dal tempo.
+
+#### Asserzione
+
+Corrisponde ad un vincolo di integrità referenziale definito separatamente dalle tabelle cui è riferito.
+
+```sql
+CREATE ASSERTION <nome_asserzione>
+CHECK (<condizione>)
+[<attributi_del_vincolo>]
+```
+
+#### Dominio
+
+E' un tipo di dati, al quale possono essere associati vincoli e valori di default, che può essere utilizzato nella definizione di tabelle.
+Garantisce che, in caso di modifica delle caratteristiche del tipo di dati, le definizioni di tutte le colonne che lo utilizzano risultino automaticamente aggiornate.
+
+```sql
+CREATE DOMAIN <nome_dominio> [AS] <tipo_dati>
+[<clausola_default>]
+[<vincolo_di_dominio>]
+
+-- <vincolo_di_dominio> è
+[CONSTRAINT <nome_vincolo>]
+<vincolo_di_controllo>
+[<attributi_del_vincolo>]
+```
+
+La definizione dei domini non devono contenere cicli.
+Per indicare le colonne che fanno uso del dominio si utilizza la parola chiave VALUE.
+
+Non è supportato da molti DBMS.
+
+#### Eliminazione elementi
+
+```sql
+-- Lo schema non sarà accessibile a nessun utente e l'azione non è reversibile.
+DROP SCHEMA <nome_schema> {RESTRICT | CASCADE}  -- con RESTRICT lo schema verrà eliminato solo se vuoto
+
+-- dominio
+DROP DOMAIN <nome_dominio> {RESTRICT | CASCADE}
+
+-- tabella
+DROP TABLE <nome_tabella> {RESTRICT | CASCADE}
+
+-- asserzione
+DROP ASSERTION <nome_asserzione>
+```
+
+#### Modifica
+
+```sql
+-- dominio
+ALTER DOMAIN <nome_dominio> 
+SET <clausola_default>
+--oppure
+ALTER DOMAIN <nome_dominio> 
+DROP DEFAULT
+-- oppure
+ALTER DOMAIN <nome_dominio> 
+ADD <vincolo_di_dominio>
+-- oppure
+ALTER DOMAIN <nome_dominio> 
+DROP CONSTRAINT <nome_vincolo>
+
+-- tabella
+-- è possibile aggiungere o rimuovere colonne
+ALTER TABLE <nome_tabella>
+ADD [COLUMN] <definizione_di_colonna>
+-- oppure 
+ALTER TABLE <nome_tabella>
+DROP [COLUMN] {RESTRICT | CASCADE}
+
+-- aggiungere o rimuovere vincoli
+-- il vincolo viene verificato anche sui dati già presenti
+ALTER TABLE <nome_tabella>
+ADD <vincolo_di_tabella>
+-- oppure
+ALTER TABLE <nome_tabella>
+DROP <nome_vincolo> {RESTRICT | CASCADE}
+
+-- assegnare o rimuovere valori di default
+ALTER TABLE <nome_tabella>
+ALTER [COLUMN] <nome_colonna>
+SET <clausola_default>
+-- oppure
+ALTER TABLE <nome_tabella>
+DROP DEFAULT
+```
+
+### Indici
+
+Un indice è una struttura dati ausiliaria che il DBMS associa ad una tabella per eseguire una maggiore efficienza nella ricerca dei dati.
+Permette di applicare una tecnica di accesso diretto evitando la scansione sequenziale della tabella. 
+
+Se la colonna indicizzata viene utilizzata frequentemente nelle ricerche, i vantaggi in termini di velocità superano gli svantaggi del overhead connesso alla gestione dell'indice nelle operazioni di aggiornamento.
+
+Lo standard non copre tutto l'argomento ma è possibile individuare le seguenti linee comuni:
+
+- il DBMS crea automaticamente un indice per la chiave primaria di ogni tabella e per ogni colonna sulla quale venga definito un vincolo di unicità;
+- esistono costrutti, con differente sintassi, che permettono di definire o di eliminare esplicitamente degli indici (CREATE | DROP INDEX);
+
+Non esistono comandi per specificare quali indici utilizzare ma è il *query optimizer* del DBMS che applica delle tecniche specifiche.
+
+SQL utilizza l'accesso *sequenziale* come strategia di base.
+
+L'utilizzo di un indice permette di cambiare la strategia in *ottimizzata*. SQL, infatti, utilizza un componente per scegliere la strategia più efficace per l'elaborazione di un'istruzione.
+
+#### Scelta degli indici
+
+E' consigliabile definire un indice:
+
+- per ogni *candidate key* per garantire il controllo di univocità dei nuovi valori;
+- per ogni *foreign key* per velocizzare i join.
+
+Le istruzioni WHERE possono trarre giovamento dalla presenza di un indice sulla colonna interessata dalla condizione.
+Se l'istruzione WHERE contiene un AND viene creato un indice sulle combinazioni interessate per garantire un'esecuzione più efficiente.
+
+Anche ORDER BY può migliorare in presenza di un indice.
