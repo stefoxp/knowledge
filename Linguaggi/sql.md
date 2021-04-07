@@ -456,3 +456,119 @@ La maggior parte dei DBMS concedono deroghe a queste restrizioni.
 - facilitano l'accesso ai dati
 - forniscono visualizzazioni diverse dei dati
 - garantiscono l'indipendenza logica delle applicazioni e delle operazioni rispetto alla struttura
+
+## Trigger e Stored Procedure
+
+Il principale limite delle tecniche di definizion dei vincoli di integrità deriva dalla necessità di definire vincoli con una sintassi non dinamica (consente solo la specifica di alcune clausole predefinite).
+
+La tecnica delle asserzioni permette di definire vincoli basati su SELECT ma ha il suo limite nella necessità di utilizzare meccanismi dichiarativi.
+
+I sistemi commerciali utilizzano sistemi procedurali che permettono di definire moduli software all'interno dei DBMS per controllare eventi di sistema.
+
+> Lo svantaggio dei meccanismi procedurali sta nella mancanza di uno standard per le estensioni di SQL.
+
+### Transact-SQL (Sybase)
+
+I database commerciali supportano, normalmente, i tipi di dati dello standard SQL e ne aggiungono degli altri.
+Possono inoltre mettere a disposizione anche istruzioni per il controllo del flusso.
+
+I programmi possono essere utilizzati in maniera interattiva, batch o all'interno di trigger o stored procedure:
+
+Prima di utilizzare un qualsiasi oggetto del database è necessario il comando **USE** per specificare il database da utilizzare.
+
+#### Variabili
+
+I nomi di variabili locali devono essere preceduti dal carattere @
+
+```sql
+DECLARE @nome_variabile <tipo_dati>
+[, @nome_variabile <tipo_dati> ...]
+
+-- La variabile appena dichiarata ha valore NULL.
+-- La si può inizializzare utilizzando
+SELECT @nome_variabile = <valore>
+```
+
+#### Istruzione IF
+
+```sql
+IF <condizione>
+    <istruzione>
+[ELSE
+    <istruzione>]
+```
+
+#### Blocchi di codice
+
+```sql
+BEGIN
+    <istruzione>
+    <istruzione>
+    ...
+    <istruzione>
+END
+```
+
+#### CASE
+
+```sql
+CASE
+    WHEN <condizione_1> THEN <risultato_1>
+    WHEN <condizione_2> THEN <risultato_2>
+    ...
+    [ELSE <risultato_alternativo>]
+END
+```
+
+#### WHILE
+
+```sql
+WHILE <condizione>
+    <istruzione>
+
+BREAK    -- forza l'uscita
+CONTINUE -- forza la ripartenza
+RETURN   -- forza l'uscita dal programma
+```
+
+Le variabili globali sono predefinite dal sistema e non possono essere aggiornate dall'utente.
+Si distinguono poiché i loro nomi sono preceduti da due @.
+
+La variabile `@@error` si utilizza per verificare la corretta esecuzione dell'ultimo programma eseguito in batch. Contiene 0 se ha avuto successo oppure il codice di errore generato.
+
+```sql
+-- permette di personalizzare la visualizzazione del risultato, mostrare statistiche e fornire informazioni per la diagnostica e il debug
+SET
+
+-- lancia l'esecuzione di un blocco di comandi, una S.P. o una transazione a un certo orario, dopo un intervallo di tempo o a causa di un evento
+WAITFOR TIME 'hh:mm'
+<istruzione>
+-- oppure
+WAITFOR DELAY 'hh:mm'
+<istruzione>
+-- oppure
+WAITFOR ERROREXIT
+<istruzione>
+```
+
+### Trigger
+
+E' costituito da un insieme di istruzioni che vengono eseguite all'interno del DBMS al verificarsi di determinati eventi (non su richiesta dell'utente).
+
+Gli eventi gestibili sono quelli correlati alla modifica dei dati (insert, update, delete).
+
+```sql
+CREATE TRIGGER <nome_trigger>
+    ON <nome_tabella> FOR <evento>
+    AS <programma>
+
+-- dove <evento> può essere:
+INSERT | UPDATE | DELETE
+-- e programma è rappresentato da codice T-SQL
+```
+
+Al momento dell'esecuzione del trigger esistono due viste speciali, visibile solo dal trigger stesso, contenenti le sole righe inserite e cancellate dalla transazione in corso, ad esempio.
+
+Il linguaggio T-SQL è una versione semplificata di un linguaggio di programmazione.
+
+Il vantaggio nell'utilizzo dei trigger è dato dalla capacità di eseguire controlli sui dati cha hanno appena subito modifiche. Ciò permette di annullare la transazione in caso di problemi.
