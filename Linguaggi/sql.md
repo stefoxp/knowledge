@@ -392,10 +392,67 @@ L'utilizzo di un indice permette di cambiare la strategia in *ottimizzata*. SQL,
 
 E' consigliabile definire un indice:
 
-- per ogni *candidate key* per garantire il controllo di univocità dei nuovi valori;
-- per ogni *foreign key* per velocizzare i join.
+- per ogni `candidate key` per garantire il controllo di univocità dei nuovi valori;
+- per ogni `foreign key` per velocizzare i join.
 
 Le istruzioni WHERE possono trarre giovamento dalla presenza di un indice sulla colonna interessata dalla condizione.
 Se l'istruzione WHERE contiene un AND viene creato un indice sulle combinazioni interessate per garantire un'esecuzione più efficiente.
 
 Anche ORDER BY può migliorare in presenza di un indice.
+
+### Viste
+
+Si utilizzano per:
+
+- semplificare le istruzioni.
+Le istruzioni eseguite spesso o molto simili possono essere semplificate tramite viste.
+- riorganizzare le tabelle.
+Per evitare la modifica di molte istruzioni quando si rende necessario modificare uno o più tabelle.
+- elaborare le istruzioni SELECT in più fasi
+- semplificare i vincoli con la clausola WITH CHECK OPTION
+- superare dei limiti dell'istruzione SELECT
+- aumentare la sicurezza dei dati
+
+Sono *tabelle virtuali* poiché non contengono dati propri ma sono ottenute riaggregando dati contenuti nelle tabelle base.
+
+Anche le viste hanno una struttura definita all'interno dello schema ma è dipendente dalle definizioni delle tabelle già presenti.
+
+#### Creazione di viste
+
+```sql
+CREATE VIEW <nome_vista>
+[(<nome_colonna> {, <nome_colonna>} ...)]
+AS <comando_select> [WITH [LOCAL | CASCADED] CHECK OPTION]
+```
+
+Se non vengono specificati nomi per le colonne della vista, vengono assunti uguali a quelli originali delle tabelle.
+
+L'opzione WITH CHECK OPTION assicura che le operazioni di inserimento e di modifica dei dati effettuate con la vista soddisfino la clausola WHERE.
+
+Le viste di gruppo contengono almeno una colonna ottenuta tramite una funzione di raggruppamento.
+
+#### Read, Update, Delete di viste
+
+```sql
+-- eliminazione
+DROP VIEW <nome_view> {RESTRICT | CASCADE}
+```
+
+Si può utilizzare una vista ovunque si possa utilizzare una tabella.
+
+Le viste sono soggette a restrizioni riguardo all'aggiornamento dei dati.
+Una vista è aggiornabile se verifica tutte le seguenti condizioni:
+
+- non utilizza DISTINCT
+- la clausola FROM della vista utilizza una tabella o una vista aggiornabile
+- la clausola SELECT della vista contiene solo riferimenti puri
+- la clausola WHERE della vista non contiene sub-query
+- la vista non contiene GROUP BY
+
+La maggior parte dei DBMS concedono deroghe a queste restrizioni.
+
+#### Vantaggi delle viste
+
+- facilitano l'accesso ai dati
+- forniscono visualizzazioni diverse dei dati
+- garantiscono l'indipendenza logica delle applicazioni e delle operazioni rispetto alla struttura
