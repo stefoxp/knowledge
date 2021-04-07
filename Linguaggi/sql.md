@@ -459,13 +459,16 @@ La maggior parte dei DBMS concedono deroghe a queste restrizioni.
 
 ## Trigger e Stored Procedure
 
-Il principale limite delle tecniche di definizion dei vincoli di integrità deriva dalla necessità di definire vincoli con una sintassi non dinamica (consente solo la specifica di alcune clausole predefinite).
+Il principale limite delle tecniche di definizione dei vincoli di integrità deriva dalla necessità di definire vincoli con una sintassi non dinamica (consente solo la specifica di alcune clausole predefinite).
 
 La tecnica delle asserzioni permette di definire vincoli basati su SELECT ma ha il suo limite nella necessità di utilizzare meccanismi dichiarativi.
 
 I sistemi commerciali utilizzano sistemi procedurali che permettono di definire moduli software all'interno dei DBMS per controllare eventi di sistema.
+Attualmente tutte le implementazioni di SQL supportano questi oggetti ma non c'è uno standard rispettato da tutti e la sintassi può differire in maniera significativa:
 
-> Lo svantaggio dei meccanismi procedurali sta nella mancanza di uno standard per le estensioni di SQL.
+- Oracle utilizza P-SQL
+- Sybase e SQL server utilizzano T-SQL
+- altri permettono di utilizzare linguaggi di programmazione come C o Java
 
 ### Transact-SQL (Sybase)
 
@@ -572,3 +575,43 @@ Al momento dell'esecuzione del trigger esistono due viste speciali, visibile sol
 Il linguaggio T-SQL è una versione semplificata di un linguaggio di programmazione.
 
 Il vantaggio nell'utilizzo dei trigger è dato dalla capacità di eseguire controlli sui dati cha hanno appena subito modifiche. Ciò permette di annullare la transazione in caso di problemi.
+
+### Stored Procedure
+
+Vengono eseguite solo su esplicita richiesta dell'utente che può passare anche una serie di parametri.
+Usano codice T-SQL come i trigger.
+
+Tutte le S.P. sono composte da almeno tre parti: un elenco di parametri, un corpo ed un nome.
+
+```sql
+CREATE PROCEDURE <nome_stored>    -- oppure CREATE PROC
+[(<definizione_parametro> [, <definizione_parametro> ...])]
+AS <programma>
+
+-- dove <definizione_parametro> é
+<nome_parametro> <tipo_dati> = <valore_default>
+```
+
+Le stored procedure sono state progettate pensando all'efficienza ma offrono possibilità tali da avvicinare i database relazionali ai sistemi orientati agli oggetti.
+
+Vantaggi delle stored procedure:
+
+- mantenimento;
+- prestazioni. Si riduce il numero di comunicazioni fra applicazione e DBMS e, di conseguenza, il traffico di rete;
+- **efficienza**. Il codice SQL viene inizialmente verificato da un parser che ne verifica la correttezza sintattica.
+Seguono una serie di controlli di contesto, riguardo i diritti di accesso, etc...
+Superati questi controlli verrà richiamato il componente query optimizer che traduce le richieste dati in un algoritmo opportuno.
+L'algoritmo viene tradotto in linguaggio macchina ed eseguito.
+Tutti i controllo preliminari richiedono tempo ma vengono eseguiti solo alla prima esecuzione (**pre-compilazione ottimizzante**).
+
+Il comando EXEC reperisce il codice della stored procedure, controlla i diritti dell'utente sulla stessa, sostituisce i parametri e l'esegue.
+La riduzione del tempo di esecuzione può essere significativa nel caso di utilizzo multiutente.
+
+```sql
+EXEC <nome_stored> [<parametro_1>, <parametro_2>, ...] -- oppure EXECUTE [PROCEDURE] oppure CALL [PROCEDURE]
+```
+
+- **incapsulamento**. Nei sistemi client-server le stored procedure possono essere utilizzate per realizzare componenti applicativi, sul lato server, che divengono accessibili a tutti i client senza dover essere ripetuti. Questo consente una visione del dato a livello più alto.
+- indipendenza dal linguaggio utilizzato per l'applicazione esterna.
+
+Le stored procedure consentono anche livelli di controllo del sistema più dettagliati di quelli realizzati attraverso i vincoli di integrità logica ed i trigger. E' infatti possibile definire i diritti di accesso degli utenti all'esecuzione dei comandi contenuti nelle S.P.
