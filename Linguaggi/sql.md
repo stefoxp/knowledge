@@ -373,7 +373,7 @@ DROP DEFAULT
 ### Indici
 
 Un indice è una struttura dati ausiliaria che il DBMS associa ad una tabella per eseguire una maggiore efficienza nella ricerca dei dati.
-Permette di applicare una tecnica di accesso diretto evitando la scansione sequenziale della tabella. 
+Permette di applicare una tecnica di accesso diretto evitando la scansione sequenziale della tabella.
 
 Se la colonna indicizzata viene utilizzata frequentemente nelle ricerche, i vantaggi in termini di velocità superano gli svantaggi del overhead connesso alla gestione dell'indice nelle operazioni di aggiornamento.
 
@@ -456,6 +456,106 @@ La maggior parte dei DBMS concedono deroghe a queste restrizioni.
 - facilitano l'accesso ai dati
 - forniscono visualizzazioni diverse dei dati
 - garantiscono l'indipendenza logica delle applicazioni e delle operazioni rispetto alla struttura
+
+## Transazioni
+
+Le transazioni si utilizzano per garantire l'integrità fisica dei dati da eventi che la possono mettere in pericolo: malfunzionamenti hardware o software del sistema e accesso concorrente ai dati.
+
+Una transazione è una sequenza di operazioni che hanno effetto globale sul database.
+Garantisce l'**atomicità**: se non hanno successo tutte le operazioni della sequenza deve fallire l'intera transazione. Se la transazione fallisce lo stato del database rimane invariato.
+
+La transazione può quindi terminare in due modi:
+
+1. successo -> COMMIT
+2. fallimento -> ABORT
+
+Una tecnica adottata con le transazioni, per prevenire malfunzionamenti hardware o software, prevede:
+
+- l'esecuzione periodica di un backup del database;
+- le modifiche ai dati di ciascuna transazione vengono registrate dal DBMS anche sul registro delle modifiche (detto anche giornale delle modifiche);
+- in caso di fallimento della transazione viene attuato un processo di ripristino a partire dal giornale (roll back);
+- in caso di perdita di dati dovuta a malfunzionamento viene attuato un processo di aggiornamento (roll forward).
+
+### Transazioni e accesso concorrente
+
+Se più transazioni vengono eseguite contemporaneamente sugli stessi dati si potrebbero verificare le seguenti anomalie:
+
+- *perdita di aggiornamenti (anomalie write - write)*
+Se una transazione T2 aggiorna un dato aggiornato da un'altra T1, l'aborto di T1 provocherebbe la perdita dell'aggiornamento di T2;
+- *letture non riproducibili (anomalie read - write)*
+Se una transazione T1 legge un dato che verrà successivamente aggiornato da T2 che terminerà con successo, il dato letto da T1 non sarà più quello presente sul database;
+- *letture improprie, dette anche fantasma (anomalie write - read)*
+Se una transazione T2 legge un dato scritto da T1 e T1 abortisce, il dato letto da T2 non è corretto.
+
+Per evitare questi problemi si può ricorrere alla *serializzazione* delle due transazioni ma la sua gestione è molto onerosa per il DBMS e per il sistema.
+Per questo si ricorre a controlli meno restrittivi.
+La forma di controllo più utilizzata è quella di **lock** dei dati:
+
+- **in lettura o condiviso**
+- **in scrittura o esclusivo**
+
+Lo standard SQL non prevede l'uso esplicito di lock ma esistono diversi tipi di transazioni che impostano implicitamente un tipo di lock.
+I singoli DBMS adottano inoltre delle specifiche tipologie di lock.
+
+### Commit
+
+Lo standard SQL prevede che una transazione abbia inizio alla prima invocazione di un comando SQL per l'accesso ai dati.
+Alcuni DBMS prevedono invece l'utilizzo di un esplicito comando che denoti l'inizio della transazione (es. BEGIN TRANS).
+
+Le transazioni NON possono essere annidate.
+
+Per concludere una transazione con successo è necessario usare il comando COMMIT
+
+```sql
+COMMIT [WORK]
+
+-- WORK è facoltativa e non cambia l'effetto del comando
+```
+
+All'invocazione del comando COMMIT la transazione viene chiusa con successo se non risultano violati vincoli d'integrità DEFERRED.
+
+### RollBack
+
+Realizza un abort della transazione per annullare tutte le modifiche apportate.
+
+```sql
+ROLLBACK [WORK]
+```
+
+### Set Transaction
+
+Specifica nel dettaglio le caratteristiche della transazione.
+E' facoltativo.
+Se utilizzato, deve essere il primo comando della transazione.
+
+Può impostare:
+
+- la modalità di accesso ai dati;
+- il livello di isolamento;
+- la dimensione dell'area di diagnostica.
+
+```sql
+SET TRANSACTION [READ ONLY | READ WRITE]
+[, ISOLATION LEVEL <livello_di_isolamento>]
+[, DIAGNOSTICS SIZE <dimensione>]
+
+-- <livello_di_isolamento> può essere
+READ UNCOMMITTED | READ COMMITTED | REPEATABLE READ | SERIALIZABLE
+```
+
+Il livello di isolamento costituisce un'alternativa alla serializzazione delle transazioni ma può portare a delle anomalie nell'utilizzo dei dati.
+
+Se si utilizza il livello di isolamento più basso (READ UNCOMMITTED) il valore di default della modalità di accesso ai dati diviene automaticamente READ ONLY e non si possono utilizzare altre opzioni.
+
+### Diagnostica
+
+SQL associa un'area di diagnostica a ciascuna esecuzione di un programma.
+
+Ogni comando scrive dei codici di stato in tale area che permettono di rilevare, utilizzando l'istruzione GET DIAGNOSTICS, se il comando è terminato regolarmente.
+Ogni comando può generare più errori. La dimensione dell'area di diagnostica determina quanti errori possono essere registrati.
+
+Il parametro SQLSTATE, in particolare, restituisce l'esito dell'ultimo comando eseguito.
+Esso sostituisce SQLCODE che rimane il parametro utilizzato ancora da molti database commerciali.
 
 ## Trigger e Stored Procedure
 
