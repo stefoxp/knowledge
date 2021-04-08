@@ -802,3 +802,79 @@ Occupa meno memoria rispetto a CHAR ma presenta due svantaggi:
 VARCHAR invece di CHAR solo se si prevede una media di 15 posizioni vuote.
 
 #### Specificare NOT NULL per tutte le colonne che lo richiedono
+
+## Ottimizzazione delle istruzioni
+
+Alcuni consigli per facilitare il compito di ottimizzazione a SQL.
+
+### Sostituire l'operatore OR
+
+Sostituire OR con IN oppure con due SELECT unite tramite UNION.
+
+### Omettere l'operatore UNION
+
+Ometterlo quando non è strettamente necessario.
+
+### Omettere l'operatore NOT
+
+Ometterlo all'interno di una condizione WHERE.
+E' consigliabile preferire un operatore di confronto.
+
+Ad esempio:
+
+```sql
+WHERE (peso >= 80)
+-- è meglio di
+WHERE NOT (peso < 80)
+```
+
+### Isolare le colonne nelle condizioni
+
+```sql
+WHERE Anno = 1980
+-- è meglio di
+WHERE Anno + 10 = 1990
+```
+
+### Utilizzare BETWEEN al posto di minore, maggiore, AND
+
+```sql
+WHERE giorno BETWEEN '1970-10-02' AND '2001-12-25'
+-- è meglio di
+WHERE giorno >= '1970-10-02'
+    AND giorno < '2001-12-25'
+```
+
+### Evitare alcune forme di LIKE
+
+Se LIKE utilizza una maschera che invia con % oppure con _, l'esecuzione non può essere ottimizzata.
+
+E' difficile trovare forme alternative in questo caso.
+
+### Aggiungere condizioni ridondanti ai join
+
+Può velocizzare l'esecuzione.
+
+### Omettere la clausola HAVING
+
+E' consigliabile preferire la clausola WHERE.
+
+### Ridurre la clausola SELECT
+
+Riducendo il numero di colonne non necessarie.
+
+### Omettere DISTINCT
+
+Quando non è strettamente necessario.
+
+### Utilizzare l'opzione ALL
+
+Con gli operatori insiemistici UNION, INTERSECT, e EXCEPT permette a SQL di non ordinare le righe per eliminare quelle doppie.
+
+### Utilizzare OUTER JOIN al posto di UNION
+
+### Omettere la conversione dei tipi di dati
+
+### Posizionare per ultima la tabella più grande in FROM
+
+### Omettere gli operatori ANY e ALL nelle condizioni
