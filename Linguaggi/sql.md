@@ -715,3 +715,90 @@ EXEC <nome_stored> [<parametro_1>, <parametro_2>, ...] -- oppure EXECUTE [PROCED
 - indipendenza dal linguaggio utilizzato per l'applicazione esterna.
 
 Le stored procedure consentono anche livelli di controllo del sistema più dettagliati di quelli realizzati attraverso i vincoli di integrità logica ed i trigger. E' infatti possibile definire i diritti di accesso degli utenti all'esecuzione dei comandi contenuti nelle S.P.
+
+## Progettazione di tabelle (consigli)
+
+### Fattori di scelta
+
+I fattori che determinano la scelta sono:
+
+- lo spazio disponibile per la memorizzazione;
+- il tempo massimo che si è disposti ad accettare per l'elaborazione delle operazioni di aggiornamento;
+- il tempo massimo che si è disposti ad accettare per l'esecuzione delle istruzioni SELECT;
+- la sicurezza.
+
+Questi fattori possono risultare in conflitto fra loro.
+
+### Linee guida
+
+#### Definire una primary key per ogni tabella
+
+Per scegliere la primary key si possono valutare i seguenti aspetti:
+
+- è preferibile la candidate key costituita dal minor numero di colonne;
+- è preferibile utilizzare quella che contiene valori interni (che sono sotto il nostro controllo);
+- è preferibile utilizzare quella che utilizza meno memoria (tipo dati).
+
+#### Ogni determinante della tabella deve essere una candidate key (forma normale di Codd)
+
+La colonna A è determinante della colonna B se ad ogni valore diverso di A corrisponde un solo valore diverso di B.
+
+Un determinante può essere composto da più colonne.
+
+Questa regola comporta uno svantaggio: certi dati registrati più volte quindi l'aggiornamento risulta più complesso, la memoria è utilizzata in maniera inefficiente e alcuni dati possono essere incoerenti.
+
+#### Non utilizzare gruppi ripetuti all'interno di una tabella
+
+Un gruppo ripetuto è formato da colonne con lo stesso tipo di dati, lo stesso significato che appartengono alla stessa tabella (ad esempio: figlio1, figlio2, figlio3).
+
+Questo limita le possibilità di memorizzazione al numero di colonne previste e complica alcune istruzioni SQL.
+
+```sql
+-- esempio di istruzioni complicata da gruppi ripetuti
+SELECT *
+FROM Tabella
+WHERE Figlio1 IS NULL    -- la verifica NON ha figli diventa complicata
+    AND Figlio2 IS NULL
+    AND Figlio3 IS NULL
+```
+
+#### Evitare la combinazione di più colonne in una
+
+Esempio: la colonna *Indirizzo* contiene indirizzo, numero civico, città e provincia.
+
+La presenza di colonne combinate semplifica le istruzioni SELECT ma complica o impedisce altre operazioni:
+
+- la ricerca per città, provincia o indirizzo
+- l'aggiornamento del campo indirizzo.
+
+#### Quando il tempo di esecuzione delle istruzioni SELECT non è accettabile diviene opportuno aggiungere dati ridondanti
+
+Le prime quattro linee guida suggeriscono un'opportuna articolazione dei dati da memorizzare in tabelle separate per facilitare le operazioni di SELECT e UPDATE.
+
+Molte operazioni possono però richiedere l'utilizzo di complessi join in presenza di molte tabelle correlate fra loro.
+
+Una soluzione è l'adozione di **dati ridondanti** che velocizza molte SELECT (detta *de-normalizzazione*) ma comporta una serie di svantaggi:
+
+- le operazioni di aggiornamento sono più complicate;
+- l'occupazione della memoria è notevolmente maggiore.
+
+#### Le colonne che devono essere confrontate fra loro devono avere lo stesso tipo dati
+
+#### Una colonna deve essere di tipo numerico solo se utilizzata nei calcoli
+
+I dati numerici occupano meno spazio in memoria ma si corre il rischio che il dato numerico debba essere, in futuro, trasformato in alfanumerico.
+
+Ad esempio il campo "codice identificativo del prodotto" se venisse cambiata la codifica.
+
+#### Non lesinare sulla lunghezza delle colonne
+
+#### Il tipo dati VARCHAR non sempre rappresenta la soluzione ottimale
+
+Occupa meno memoria rispetto a CHAR ma presenta due svantaggi:
+
+- per ogni valore contenuto SQL memorizza internamente la sua lunghezza (spreco di spazio);
+- le operazioni di estrazione e aggiornamento dati risultano più lente.
+
+VARCHAR invece di CHAR solo se si prevede una media di 15 posizioni vuote.
+
+#### Specificare NOT NULL per tutte le colonne che lo richiedono
