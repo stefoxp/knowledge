@@ -25,3 +25,17 @@ sudo apt-get install xorg openbox openbox-themes openbox-xdgmenu suckless-tools 
 [Overview of packages on ubuntuopenbox.com](https://www.ubuntuopenbox.com/lessons/m31-overview-of-the-installation/)
 
 > I cannot install openbox-themes openbox-xdgmenu packages
+ligthdm don't complete login. Error: lightdm: pam_succeed_if(lightdm:auth): requirement "user ingroup nopasswdlogin" not met by user ...
+
+``` bash
+# Change keyboard layout into shell
+sudo loadkeys us
+
+# edit lightdm configuration (https://wiki.ubuntu-it.org/AmbienteGrafico/DisplayManager/LightDM)
+sudo vi /etc/lightdm/lightdm.conf
+
+# restart lightdm
+systemctl restart lightdm
+```
+
+[https://acavalin.com/p/lightdm_passwordless_login](https://acavalin.com/p/lightdm_passwordless_login)
