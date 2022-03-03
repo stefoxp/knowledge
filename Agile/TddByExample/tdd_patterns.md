@@ -61,6 +61,57 @@ One beneficial side effect is that it makes programming easier.
 
 ## Red Bar Patterns
 
+### One Step Test
+
+Pick next from the list a test that will teach you something and that you are confident you can implement.
+
+If you don't find any test on the list that represents one step, then add some new tests that would represent progress toward the items there.
+
+### Starter Test
+
+Start by testing a variant of an operation that doesn't do anything.
+
+### Explanation Test
+
+Ask for and give explanations in terms of tests.
+
+### Learning Test
+
+Write tests for externally produced software before the first time you are going to use a new facility in the package.
+
+If your understanding of the API is correct, then the test will pass first time.
+
+### Another Test
+
+When a tangential idea arises, add a test to the list and go back to the topic.
+
+### Regression Test
+
+When a defect is reported, write the smallest possible test that fails and that, once run, will be repaired.
+
+... are test that, with perfect foreknowledge, you would have written when coding originally.
+
+### Break
+
+When you feel tired or stuck, take a break.
+
+Additional outside elements:
+
+- keep a water bottle by your keyboard so that biology provides the motivation for regular breaks
+- committments after regular work hours can help you to stop when you need sleep before progress
+- weekend commmitments help get your conscious, energy-sucking thoughts off work
+- mandatory vacation policies help you refresh yourself completely
+
+### Do Over
+
+When you are feeling lost, throw away the code and start over.
+
+### Cheap Desk, Nice Chair
+
+Get a really nice chair.
+
+Get cheap / slow / old machines for individual e-mail and surfing, and the hottest possible machines for shared development.
+
 ## Testing Patterns
 
 ## Green Bar Patterns
