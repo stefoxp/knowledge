@@ -114,6 +114,80 @@ Get cheap / slow / old machines for individual e-mail and surfing, and the hotte
 
 ## Testing Patterns
 
+### Child test
+
+Write a smaller test case that represents the broken part of the bigger test case.
+Get the smaller test case running.
+Reintroduce the larger test case.
+
+### Mock Objects
+
+- [http://www.mockobjects.com/](http://www.mockobjects.com/)
+
+How do you test an object that relies on an expensive or complicated resource?
+
+Create a fake version of the resource that answers constants.
+
+The classic example is database:
+
+- it take a long time to start
+- it is difficult to keep clean
+- it is located on a remote server
+- it is also a fertile source of error in development
+
+The solution is not to use a real database most of the time.
+
+```java
+public void testOrderLookup() {
+    // db sitting in memory
+    Database db = new MockDatabase();
+    // if it does not get the query it expects, then it throws an exception
+    db.expectQuery("select order_no from Order where cust_no is 123");
+    // if the query is correct, then it returns something that looks like a result set constructed from the constant strings
+    db.returnResult(new String[] {"Order 2", "Order 3"});
+}
+```
+
+Another value of mocks, aside from **performance** and **reliability**, is **readability**.
+
+... encourage you down the path of carefully considering the visibility of every object, reducing the coupling in your designs.
+
+### Self Shunt
+
+How do you test that one object communicates correctly with another?
+
+Have the object under test communicate with the test case instead of with the object it expects.
+
+Tests written with Self Shunt tend to read better than tests written without it.
+
+### Log String
+
+Ho do you test that the sequence in which messages are called is correct?
+
+Keep a log in a string, and append to the string when a message is called.
+
+Work well with Self Shunt.
+
+### Crash test dummy
+
+How do you test error code that is unlikely to be invoked?
+
+Invoke it anyway with a special object that throws an exception instead of doing real work.
+
+Code that isn't tested doesn't work.
+
+... is lik a Mock Object, except you don't need to mock up the whole object.
+
+### Broken test
+
+When you are programming alone, leave the last test broken.
+
+When you come back to the code, you then have an obvious place to start.
+
+### Clean check-in
+
+When you are programming in a team, leave all the tests running.
+
 ## Green Bar Patterns
 
 ## xUnit Patterns
