@@ -7,13 +7,13 @@
 - [The Pragmatic Programmer: From Journeyman to Master](https://www.goodreads.com/book/show/4099.The_Pragmatic_Programmer) - Andrew Hunt, David Thomas
 - [Pragmatic Thinking And Learning Refactor Your Wetware](https://www.goodreads.com/book/show/3063393-pragmatic-thinking-and-learning) - Andy Hunt
 - [Extreme programming explained (1 and 2 edition)](https://www.goodreads.com/book/show/67833.Extreme_Programming_Explained) - Kent Beck
-- [Test Driven Development: By Example](https://www.goodreads.com/book/show/387190.Test_Driven_Development) - Kent Beck
+- [Test Driven Development: By Example](TddByExample/readme.md) - Kent Beck
 - [Clean Code: A Handbook of Agile Software Craftsmanship](https://www.goodreads.com/book/show/3735293-clean-code) - R.C.Martin
 - [Guida Galattica per Agilisti](https://www.guidagalatticaperagilisti.com/) - Stefano Leli, Pierluigi Pugliese, Giovanni Puliti, Giulio Roggero
 - [Continuous Delivery: Reliable Software Releases Through Build, Test, and Deployment Automation](https://www.goodreads.com/book/show/8686650-continuous-delivery) - Jez Humble, David Farley
 - [Growing Object Oriented Software Guided By Tests](https://github.com/stefoxp/growing-object-oriented-software) - S.Freeman, N.Pryce
 - [Intelligenza emotiva](https://www.goodreads.com/book/show/9652008-intelligenza-emotiva) - Daniel Goleman
-- [Kanban in action](KanbanInAction) - Marcus Hammarberg, Joakim Sundén
+- [Kanban in action](KanbanInAction/readme.md) - Marcus Hammarberg, Joakim Sundén
 
 ### Da leggere
 
