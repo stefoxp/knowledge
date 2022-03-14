@@ -223,7 +223,101 @@ Implement an operation that works with collections of objects without the collec
 
 ## xUnit Patterns
 
+Patterns for using one of the xUnit family of testing frameworks.
 
+### Assertion
+
+Write boolean expressions that automate your judgement about whether the code worked.
+
+- the decisions have to be boolean
+- the state of the booleans have to be checked by computer, by calling some variant of an assert() method
+
+Some teams adopt the convention that all assertions must be accompanied by an informative error message.
+
+### Fixture
+
+Convert the local variables in the tests into instance variables. Override **setUp()** and initialize those variables.
+
+Tests written with the setup code right there with the assertions are readable from top to bottom.
+
+```java
+// example
+// EmptyRectangleTest
+public void testEmpty() {
+    Rectangle empty = new Rectangle(0,0,0,0);
+    assertTrue(empty.isEmpty());
+}
+
+public void testWidth() {
+    Rectangle empty = new Rectangle(0,0,0,0);
+    assertEquals(0.0, empty.getWidth(), 0.0);
+}
+
+// get rid of the duplication
+private Rectangle empty;
+
+public void setUp() {
+    empty = new Rectangle(0,0,0,0);
+}
+
+public void testEmpty() {
+    assertTrue(empty.isEmpty());
+}
+
+public void testWidth() {
+    assertEquals(0.0, empty.getWidth(), 0.0);
+}
+
+/*
+We have extracted the common code as a method, one that the framework is guaranteed to call before our test method is called.
+*/
+```
+
+The relationship of subclasses of TestCase and instances of those subclasses is one of the most confusing parts of xUnit.
+
+### External Fixture
+
+You can release external resources in the fixture if you override **tearDown()** and release the resources.
+
+xUnit guarantees that a method called tearDown() will be run after the test method.
+
+### Test Method
+
+You represent a single test case as a method whose name begins with **test.**
+
+All the tests that share a single fixture will be methods in the same class.
+
+Test methods should be easy to read.
+
+When I write tests, I first create a short outline of the tests I want to write:
+
+/* Adding to tuple spaces */
+/* Taking from tuple spaces */
+/* Reading from tuples space */
+
+There are place holders until I add specific tests under each category.
+When I add tests, I add another level of comments to the outline:
+
+/* Adding to tuple spaces */
+/* Taking from tuple spaces */
+/** Taking a non-existent tuple **/
+/** Taking a existent tuple **/
+/** Taking multiple tuples **/
+/* Reading from tuples space */
+
+I usually only have two or three levels to the outline.
+
+The outline essentially becomes documentation of the contract for the class being tested.
+
+Immediately under the lowest level of the outline is the test case code.
+
+### Exception Test
+
+Catch expected exceptions and ignore them, failing only if the exception isn't thrown.
+
+### All Tests
+
+Make a suite of all the suites, one for each package, and one aggregating for the whole application.
 
 ## Design Patterns
 
