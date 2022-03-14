@@ -190,7 +190,40 @@ When you are programming in a team, leave all the tests running.
 
 ## Green Bar Patterns
 
+Once you have a broken test, you need to fix it. If you treat a red bar as a condition to be fixed as quickly as possible, then you will discover that you can get to green quickly.
+
+### Fake it
+
+The first implementation once you have a broken test is: return a constant.
+
+Once you have the test running, gradually transform the constant into an expression using variables.
+
+There are a couple of effects that make Fake it powerful:
+
+- **Psychological** Having a green bar feels completely different from having a red bar. When the bar is green you can refactor from there with confidence.
+- **Scope control** Programmers are good at imagining all sorts of future problems. Starting with one concrete example and generalizing from there prevents you from prematurely confusing yourself with extraneous concerns.
+
+### Triangulate
+
+Abstract only when you have two or more examples.
+
+Triangulation is attractive because the rules for it seem so clear.
+
+Although they seem simple, the rules for Triangulation create an infinite loop.
+
+I use Triangulation when I'm really, really unsure about the correct abstraction for the calculation. Otherwise I rely on either Obvious Implementation or Fake it.
+
+### Obvious implementation
+
+Simple operations: implement them.
+
+### One to Many
+
+Implement an operation that works with collections of objects without the collection first, then make it work with collections.
+
 ## xUnit Patterns
+
+
 
 ## Design Patterns
 
