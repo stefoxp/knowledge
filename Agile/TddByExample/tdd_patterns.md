@@ -435,7 +435,7 @@ Applicate Composite is a programmer's trick, nor generally appreciated by the re
 
 ### Collecting Parameter
 
-How do you collect the results of an operation that is spread over several objects? Add a parameter to the opearation in which the results will be collected.
+How do you collect the results of an operation that is spread over several objects? Add a parameter to the operation in which the results will be collected.
 
 ... is a common sequence of Composite.
 
