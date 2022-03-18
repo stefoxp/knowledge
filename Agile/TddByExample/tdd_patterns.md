@@ -321,6 +321,129 @@ Make a suite of all the suites, one for each package, and one aggregating for th
 
 ## Design Patterns
 
+We can expect to find common problems with common solutions.
+
+The enormous success of design patterns is a testimonial to the commonality seen by object programmers.
+
+The design patterns covered here are not intended to be comprehensive.
+They are just enough design to get us through the examples.
+
+### Use of Design Patterns in TDD
+
+|Pattern             |Test Writing|Refactoring|
+|--------------------|-----------:|----------:|
+|Command             |X           |           |
+|Value Object        |X           |           |
+|Null Object         |            |X          |
+|Template Method     |            |X          |
+|Pluggable Object    |            |X          |
+|Pluggable Selector  |            |X          |
+|Factory Method      |X           |X          |
+|Imposter            |X           |X          |
+|Composite           |X           |X          |
+|Collecting Parameter|X           |X          |
+
+### Command
+
+When you need the invocation of a computation to be more complicated than a simple method call make an object for the computation and invoke it.
+
+### Value Object
+
+How do you design objects that will be widely shared, but for whom identity is unimportant?
+
+Set their state when they are created and never change it.
+Operations on the object always  return a new object.
+
+When implementing a Value Object, every operation has to return a fresh object, leaving the original unchanged.
+All of these object allocations can create performance problems, which should be handled like all performance problems.
+
+All Value Objects have to implement equality.
+
+### Null Object
+
+Create an object representing the special case.
+
+### Template Method
+
+How do you represent the invariant sequence of a computation while providing for future refinement?
+Write a method that is implemented entirely in terms of other methods.
+
+In inheritance, object languages provide a simple mechanism for communicating universal sequences. A superclass can contain a method written entirely in terms of other methods, and subclasses can implement those methods in different ways.
+
+One question when writing a Template Method is whether to write a default implementation of the sub-methods.
+
+Template methods are best found through experience instead of designed that way from the beginning.
+
+### Pluggable Object
+
+Express variation with explicit conditionals.
+
+You will quickly find that such explicit decision making begins to spread.
+
+Because the second imperative of TDD is the elimination of duplication, you must nip the plague of explicit conditionals in the bud.
+
+It is time to pull out the most basic of object design moves, the Pluggable Object.
+
+The Pluggable Objects revealed by simply eliminating duplication are sometimes counterintuitive.
+
+In languages with explicit interfaces, you will have to implement an interface along with the two (or more) Pluggable Objects.
+
+### Pluggable Selector
+
+How do you invoke different behavior for different instances? Store the name of a method, and dynamically invoke the method.
+
+Sub-classing is a heavyweight mechanism for capturing such a small amount of variation.
+
+One alternative is to have a single class with a switch statement. Depending on the value of a field, you invoke different methods. However, the name of the method appears in three places:
+
+- the creation of the instance
+- the switch statement
+- the method itself
+
+Pluggable Selector can definitely be overused.
+
+Use Pluggable Selector only when you are cleaning up a fairly straightforward situation in which each of a bunch of subclasses has only one method.
+
+### Factory Method
+
+When you want flexibility in creating new object create the object in a method instead of using a constructor.
+
+This method is called a Factory Method, because it makes objects.
+
+The downside of using Factory Method is precisely its indirection.
+
+Use Factory Method only when you need the flexibility it creates.
+
+### Imposter
+
+Introduce a new variation into a computation with a new object with the same protocol as an existing object but a different implementation.
+
+Generally, spotting the possibility of an Imposter the first time requires insight.
+
+Two example of Imposter that come up during refactoring:
+
+- **Null Object** You can treat the absence of data the same as the presence of data
+- **Composite** You can treat a collection of objects the same as a single object
+
+Finding Imposters during refactoring is driven by eliminating duplication.
+
+### Composite
+
+Make an Imposter for the component objects if an object have a behavior that is the composition of the behavior of a list of other objects.
+
+Applicate Composite is a programmer's trick, nor generally appreciated by the rest of the world. However, the benefits to program design are enormous.
+
+### Collecting Parameter
+
+How do you collect the results of an operation that is spread over several objects? Add a parameter to the opearation in which the results will be collected.
+
+... is a common sequence of Composite.
+
+### Singleton
+
+How do you provide global variables in languages without global variables?
+Don't. Your programs will thank you for taking the time to think about design instead.
+
 ## Refactoring
 
 ## Mastering TDD
