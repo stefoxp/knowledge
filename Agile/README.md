@@ -14,6 +14,7 @@
 - [Growing Object Oriented Software Guided By Tests](https://github.com/stefoxp/growing-object-oriented-software) - S.Freeman, N.Pryce
 - [Intelligenza emotiva](https://www.goodreads.com/book/show/9652008-intelligenza-emotiva) - Daniel Goleman
 - [Kanban in action](KanbanInAction/readme.md) - Marcus Hammarberg, Joakim Sundén
+- [The Toyota Way to Lean Leadership: Achieving and Sustaining Excellence Through Leadership Development](https://www.goodreads.com/book/show/11722275-the-toyota-way-to-lean-leadership) - Jeffrey K. Liker, Gary L. Convis
 
 ### Da leggere
 
